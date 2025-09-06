@@ -1,10 +1,12 @@
 import React from "react";
 import PopularMovies from "../../components/PopularMovies/PopularMovies";
+import Header from "../../components/Header/Header";
 
 
 function Home(){
     return(
         <React.Fragment>
+            <Header/>
             <div className="container">
                 <h1>UdeSA Movies</h1>
                 {/* header/navbar */}
