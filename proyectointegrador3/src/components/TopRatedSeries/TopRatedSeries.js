@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SingleCardMovie from "../SingleCardMovie/SingleCardMovie";
 
-class PopularMovies extends Component {
+class TopRatedSeries extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -23,14 +23,14 @@ class PopularMovies extends Component {
 
     componentDidMount(){
         // el fetch te lo da la API asi para node
-        const url = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+        const url = 'https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1';
         const options = {
-        method: 'GET',
-        headers: {
+          method: 'GET',
+          headers: {
             accept: 'application/json',
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYmZlMjU5MjliNzExMDQ1ZDQwNGMyM2UxOTE4ZTJlZiIsIm5iZiI6MTc1NzE3MjgwMS4zNywic3ViIjoiNjhiYzU0NDE3OTY1MmEwNGU3NGU1OTY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.mOmvs0Cidnu6ANiw9hZyOJugT7wHhqXjCoVFVVCwNNY'
-        }
-        };
+          }
+        };    
 
         fetch(url, options)
         .then(res => res.json())
@@ -41,4 +41,4 @@ class PopularMovies extends Component {
     }
 }
 
-export default PopularMovies
+export default TopRatedSeries
