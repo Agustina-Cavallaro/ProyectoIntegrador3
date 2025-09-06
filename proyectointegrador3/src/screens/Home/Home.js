@@ -6,6 +6,7 @@ function Home(){
             <div className="container">
                 <h1>UdeSA Movies</h1>
                 {/* header/navbar */}
+                
                 <h2 className="alert alert-primary">Popular movies this week</h2>
                 <PopularMovies filter={true} />
                 <h2 class="alert alert-primary">Movies now playing</h2>
