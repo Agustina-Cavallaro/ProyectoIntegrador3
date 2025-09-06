@@ -1,5 +1,12 @@
 import React from "react";
 import PopularMovies from "../../components/PopularMovies/PopularMovies";
+import Header from "../../components/Header/Header";
+
+import NowPlayingMovies from "../../components/NowPlayingMovies/NowPlayingMovies";
+import UpcomingMovies from "../../components/UpcomingMovies/UpcomingMovies";
+import PopularSeries from "../../components/PopularSeries/PopularSeries";
+import TopRatedSeries from "../../components/TopRatedSeries/TopRatedSeries";
+
 function Home(){
     return(
         <React.Fragment>
