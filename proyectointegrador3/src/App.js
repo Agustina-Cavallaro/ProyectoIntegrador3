@@ -1,6 +1,13 @@
+import React from "react";
+import { Switch } from "react-router-dom/cjs/react-router-dom.min";
+import { Route } from "react-router-dom/cjs/react-router-dom";
+import Home from "./screens/Home/Home";
+
 function App() {
   return (
-    <h1>esto esta para que no de error</h1>
+    <Switch>
+      <Route path="/" exact= {true} component={Home}/>
+    </Switch>
   );
 }
 
