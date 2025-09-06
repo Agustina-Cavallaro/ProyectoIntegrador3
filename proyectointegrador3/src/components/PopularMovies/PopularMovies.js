@@ -11,11 +11,11 @@ class PopularMovies extends Component {
     }
 
     render(){
-        let filtroONo = (this.state.filter? this.state.datos.filter((_,i) => i<4) : this.state.datos) //si filter es verdadero, me devuelve una lista con los primero 4, sino todos los datos que ya tenia
+        let filtroONo = (this.state.filter? this.state.datos.results.filter((_,i) => i<4) : this.state.datos.results) //si filter es verdadero, me devuelve una lista con los primero 4, sino todos los datos que ya tenia
         return(
             <React.Fragment>
                 <section className="row cards" id="movies">
-                        {(this.state.datos.length === 0) ?  <h3>Cargando...</h3> : filtroONo.map((char) => <SingleCardMovie data={char}/>)}
+                        {(this.state.datos.length === 0) ?  <h3>Cargando...</h3> : filtroONo.map((card) => <SingleCardMovie data={card} />)}
                 </section>
             </React.Fragment>
         )
@@ -35,7 +35,7 @@ class PopularMovies extends Component {
         fetch(url, options)
         .then(res => res.json())
         .then(json => this.setState({
-            datos: json.results //guardo mis resultados del fetch pasados a json, en lo que era [] abajo de super();
+            datos: json //guardo mis resultados del fetch pasados a json, en lo que era [] abajo de super();
         }))
         .catch(err => console.error(err));
     }

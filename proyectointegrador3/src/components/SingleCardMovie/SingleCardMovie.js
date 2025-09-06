@@ -10,14 +10,14 @@ class SingleCardMovie extends Component{
     }
     render(){
         return(
-            <article class="single-card-movie">
-                <img src="https://image.tmdb.org/t/p/w500/tzrJulItjttxzoX0t3B2My46TS7.jpg" class="card-img-top" alt="..."/>
-                <div class="cardBody">
-                    <h5 class="card-title">The Thursday Murder Club</h5>
-                    <p class="card-text">A group of senior sleuths passionate about solving cold cases get plunged into
-                        a real-life murder mystery in this comic crime caper.</p>
-                    <a href="movie.html" class="btn btn-primary">Ver más</a>
-                    <a href="" class="btn alert-primary">🩶</a>
+            <article className="single-card-movie">
+                <img src={"https://image.tmdb.org/t/p/w342" + this.state.data.poster_path} className="card-img-top" alt="..."/>
+                <div className="cardBody">
+                    <h5 className="card-title">{this.state.data.original_title}</h5>
+                    <p className="card-text">{this.state.data.overview}</p>
+                    <a href="movie.html" className="btn btn-primary">Ver más</a> 
+                    {/* falta ir a detalle*/}
+                    <a href="" className="btn alert-primary">🩶</a>
                 </div>
             </article>
         )
