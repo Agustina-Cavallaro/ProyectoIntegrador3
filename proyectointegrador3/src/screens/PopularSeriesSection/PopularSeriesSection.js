@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import Header from "../../components/Header/Header";
 
 class PopularSeriesSection extends Component {
     constructor(){
@@ -9,7 +10,9 @@ class PopularSeriesSection extends Component {
     }
     render(){
         return(
-            <React.Fragment></React.Fragment>
+            <React.Fragment>
+                <Header/>
+            </React.Fragment>
         )
     }
 }

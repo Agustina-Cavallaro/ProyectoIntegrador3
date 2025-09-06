@@ -1,0 +1,39 @@
+/* --- Header layout --- */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #0d47a1;       
+    color: #fff;
+    padding: 20px 20px;
+ 
+  }
+  
+  /* --- Branding --- */
+  .logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: .2px;
+    white-space: nowrap;
+  }
+  
+  /* --- Nav --- */
+  .nav ul {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+  }
+  
+  .nav li {
+    display: inline-flex;
+  }
+  
+  .nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 10px;
+
+
+  }
+  
