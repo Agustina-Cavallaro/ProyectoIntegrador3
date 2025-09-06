@@ -1,5 +1,7 @@
 import React from "react";
 import PopularMovies from "../../components/PopularMovies/PopularMovies";
+
+
 function Home(){
     return(
         <React.Fragment>
@@ -12,6 +14,9 @@ function Home(){
 
                 <h2 class="alert alert-warning">Upcoming Movies</h2>
             </div>
+            <footer>
+             <p>Maria Agustina Cavallaro y Ana Paula Oldani </p>
+        </footer>
         </React.Fragment>
     )
 }
