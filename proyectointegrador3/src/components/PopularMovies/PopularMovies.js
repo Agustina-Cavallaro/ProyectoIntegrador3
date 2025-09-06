@@ -6,24 +6,19 @@ class PopularMovies extends Component {
         super(props);
         this.state = {
             datos: [], //aca voy a guardar mis datos cuando haga el fetch
-            filter: props.filter //me dice si filtro los primeros 4 o no
+            filter: props.filter, //me dice si filtro los primeros 4 o no
         }
     }
 
     render(){
+        let filtroONo = (this.state.filter? this.state.datos.filter((_,i) => i<4) : this.state.datos) //si filter es verdadero, me devuelve una lista con los primero 4, sino todos los datos que ya tenia
         return(
             <React.Fragment>
                 <section className="row cards" id="movies">
-                        {(this.state.datos === "" )? 
-                        <h3>Cargando...</h3> : (this.state.filter? )
-                        this.state.primerosCuatro.map((char) => <SingleCardMovie data={char} key={char.id}/>)}
+                        {(this.state.datos.length === 0) ?  <h3>Cargando...</h3> : filtroONo.map((char) => <SingleCardMovie data={char}/>)}
                 </section>
             </React.Fragment>
         )
-    }
-    filtrar(){
-        let primerosCuatro = this.state.datos.filter(i => i<=4)
-
     }
 
     componentDidMount(){
