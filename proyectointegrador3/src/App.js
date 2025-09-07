@@ -6,7 +6,10 @@ import PopularMoviesSection from "./screens/PopularMoviesSection/PopularMoviesSe
 import NowPlayingMoviesSection from "./screens/NowPlayingMoviesSection/NowPlayingMoviesSection";
 import UpcomingMoviesSection from "./screens/UpcomingMoviesSection/UpcomingMoviesSection";
 import PopularSeriesSection from "./screens/PopularSeriesSection/PopularSeriesSection";
+import UnaPeli from "./components/UnaPeli/UnaPeli";
+// import UnaSerie from "./components/UnaSerie/UnaSerie";
 import NotFound from "./components/NotFound/NotFound";
+
 
 function App() {
   return (
@@ -16,6 +19,8 @@ function App() {
       <Route path="/popular" component={PopularMoviesSection} />
       <Route path="/nowplaying" component={NowPlayingMoviesSection} />
       <Route path="/upcoming" component={UpcomingMoviesSection} />
+      <Route path="/movie/id/:id" component={UnaPeli} />
+        {/* <Route path="/series/:id" component={UnaSerie} /> */} 
       
       <Route path="*" component={NotFound}/>  {/* asterisco abarca cualquier otra ruta que no sea estas */}
     </Switch>  
