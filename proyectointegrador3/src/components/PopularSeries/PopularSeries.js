@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SingleCardMovie from "../SingleCardMovie/SingleCardMovie";
+import Loading from "../Loading/Loading";
 
 class PopularSeries extends Component {
     constructor(props){
@@ -7,6 +8,7 @@ class PopularSeries extends Component {
         this.state = {
             datos: [], //aca voy a guardar mis datos cuando haga el fetch
             filter: props.filter, //me dice si filtro los primeros 4 o no
+            contador:1
         }
     }
 
@@ -15,10 +17,15 @@ class PopularSeries extends Component {
         return(
             <React.Fragment>
                 <section className="row cards" id="movies">
-                        {(this.state.datos.length === 0) ?  <h3>Cargando...</h3> : filtroONo.map((card) => <SingleCardMovie data={card} />)}
+                        {(this.state.datos.length === 0) ?  <Loading/> : filtroONo.map((card) => <SingleCardMovie data={card} />)}
                 </section>
+                { !this.state.filter ? <button onClick={() => this.cargarMas()}> Cargar Más </button> : null}
             </React.Fragment>
         )
+    }
+
+    cargarMas = () => {
+        this.setState(prev => ({contador: prev.contador +1}))
     }
 
     componentDidMount(){
@@ -38,6 +45,27 @@ class PopularSeries extends Component {
             datos: json.results //guardo mis resultados del fetch pasados a json, en lo que era [] abajo de super();
         }))
         .catch(err => console.error(err));
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(prevState.contador !== this.state.contador){ 
+        const url = `https://api.themoviedb.org/3/tv/popular?language=en-US&page=${this.state.contador}`;
+        const options = {
+          method: 'GET',
+          headers: {
+            accept: 'application/json',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYmZlMjU5MjliNzExMDQ1ZDQwNGMyM2UxOTE4ZTJlZiIsIm5iZiI6MTc1NzE3MjgwMS4zNywic3ViIjoiNjhiYzU0NDE3OTY1MmEwNGU3NGU1OTY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.mOmvs0Cidnu6ANiw9hZyOJugT7wHhqXjCoVFVVCwNNY'
+          }
+        }
+        fetch(url, options)
+        .then(res => res.json())
+        .then((json)=> this.setState((prev)=> ({
+            datos: prev.datos.concat(json.results)
+        })
+
+        ) )
+        .catch((error) => console.log(error))
+    }
     }
 }
 

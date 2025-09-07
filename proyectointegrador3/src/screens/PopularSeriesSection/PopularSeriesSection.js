@@ -1,20 +1,16 @@
 import React, { Component } from "react";
 import Header from "../../components/Header/Header";
+import PopularSeries from "../../components/PopularSeries/PopularSeries";
 
-class PopularSeriesSection extends Component {
-    constructor(){
-        super();
-        this.state ={
-
-        }
-    }
-    render(){
+function PopularSeriesSection() {
         return(
             <React.Fragment>
                 <Header/>
+                <h2 class="alert alert-warning">Popular series this week</h2>
+                <PopularSeries filter={false}/>
             </React.Fragment>
         )
-    }
 }
+
 
 export default PopularSeriesSection

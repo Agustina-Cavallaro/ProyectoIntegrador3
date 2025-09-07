@@ -6,16 +6,19 @@ import PopularMoviesSection from "./screens/PopularMoviesSection/PopularMoviesSe
 import NowPlayingMoviesSection from "./screens/NowPlayingMoviesSection/NowPlayingMoviesSection";
 import UpcomingMoviesSection from "./screens/UpcomingMoviesSection/UpcomingMoviesSection";
 import PopularSeriesSection from "./screens/PopularSeriesSection/PopularSeriesSection";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
     <Switch>
       <Route path="/" exact= {true} component={Home}/>
       <Route path="/favoritos" component={PopularSeriesSection} />
-        <Route path="/popular" component={PopularMoviesSection} />
-        <Route path="/nowplaying" component={NowPlayingMoviesSection} />
-        <Route path="/upcoming" component={UpcomingMoviesSection} />
-    </Switch>
+      <Route path="/popular" component={PopularMoviesSection} />
+      <Route path="/nowplaying" component={NowPlayingMoviesSection} />
+      <Route path="/upcoming" component={UpcomingMoviesSection} />
+      
+      <Route path="*" component={NotFound}/>  {/* asterisco abarca cualquier otra ruta que no sea estas */}
+    </Switch>  
   );
 }
 

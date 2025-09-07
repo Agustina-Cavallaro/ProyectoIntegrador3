@@ -6,18 +6,30 @@ class SingleCardMovie extends Component{
         super(props);
         this.state = {
             data: props.data,
+            verMas: false,
+            textoBoton: "ver mas",
+            clase: "noMostrar"
         }
     }
+
+    boton (){
+        this.setState({
+            verMas: !this.state.verMas,
+            textoBoton: this.state.textoBoton === "ver mas"? "ver menos" : "ver mas",
+            clase: this.state.textoBoton === "ver mas" ? "" : "noMostrar"
+        })
+    }
+
     render(){
         return(
             <article className="single-card-movie">
                 <img src={"https://image.tmdb.org/t/p/w342" + this.state.data.poster_path} className="card-img-top" alt="..."/>
                 <div className="cardBody">
                     <h5 className="card-title">{this.state.data.original_title}</h5>
-                    <p className="card-text">{this.state.data.overview}</p>
-                    <a href="movie.html" className="btn btn-primary">Ver más</a> 
-                    {/* falta ir a detalle*/}
-                    <a href="" className="btn alert-primary">🩶</a>
+                    <p className={"card-text " + this.state.clase}>{this.state.data.overview}</p>
+                    <button onClick={() => this.boton()} className="btn btn-primary"> {this.state.textoBoton}</button>
+                    <Link to="/detail">Ver Detalle</Link> {/* Aca hay que definir bien la ruta para que ande*/}
+                    <button className="btn alert-primary">🩶</button> {/* Aca le falta el on clic para hacerlo funcional*/}
                 </div>
             </article>
         )
