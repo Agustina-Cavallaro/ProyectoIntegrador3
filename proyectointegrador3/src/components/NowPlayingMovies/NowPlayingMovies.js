@@ -17,7 +17,7 @@ class NowPlayingMovies extends Component {
         return(
             <React.Fragment>
                 <section className="row cards" id="movies">
-                        {(this.state.datos.length === 0) ?  <Loading/> : filtroONo.map((card) => <SingleCardMovie data={card} />)}
+                        {(this.state.datos.length === 0) ?  <Loading/> : filtroONo.map((card) => <SingleCardMovie data={card} pelicula={true}/>)}
                 </section>
                 { !this.state.filter ? <button onClick={() => this.cargarMas()}> Cargar Más </button> : null}
             </React.Fragment>
