@@ -1,5 +1,5 @@
 import React from "react";
-import "./stylesF.css"
+
 
 function Footer(props) {
     return(

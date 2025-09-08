@@ -1,19 +1,22 @@
 import React from "react";
 import PopularMovies from "../../components/PopularMovies/PopularMovies";
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 
 import NowPlayingMovies from "../../components/NowPlayingMovies/NowPlayingMovies";
 import UpcomingMovies from "../../components/UpcomingMovies/UpcomingMovies";
 import PopularSeries from "../../components/PopularSeries/PopularSeries";
 import TopRatedSeries from "../../components/TopRatedSeries/TopRatedSeries";
-import SearchForm from "../../components/SearchForm/SearchForm";
+import Formulario from "../../components/Formulario /Formulario";
+// import SearchForm from "../../components/SearchForm/SearchForm";
 
 function Home(){
     return(
         <React.Fragment>
             <Header/>
-            <SearchForm/>
+            {/* <SearchForm/> */}
+            <Formulario/>
             <div className="container">
                 <h1>UdeSA Movies</h1>
                  
@@ -37,9 +40,8 @@ function Home(){
                 <UpcomingMovies filter={true}/>
                 <Link to="/upcoming">Ver Todas</Link>
             </div>
-            <footer>
-             <p>Maria Agustina Cavallaro y Ana Paula Oldani </p>
-        </footer>
+            <Footer/>
+        
         </React.Fragment>
     )
 }

@@ -1,4 +1,5 @@
 import React from "react";
+// import Formulario from "../Formulario /Formulario";
 
 function SearchForm() {
     return(
