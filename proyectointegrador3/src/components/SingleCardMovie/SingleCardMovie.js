@@ -29,6 +29,7 @@ class SingleCardMovie extends Component{
                     <p className={"card-text " + this.state.clase}>{this.state.data.overview}</p>
                     <button onClick={() => this.boton()} className="btn btn-primary"> {this.state.textoBoton}</button>
                     <Link to={`/movie/id/${this.state.data.id}`}>Ver detalle</Link>
+                    {/* <Link to={`/tv/id/${this.state.data.id}`}>Ver detalle</Link> */}
                     <button className="btn alert-primary">🩶</button> {/* Aca le falta el on clic para hacerlo funcional*/}
                 </div>
             </article>
