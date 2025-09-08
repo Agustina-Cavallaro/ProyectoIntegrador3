@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom";
 class SingleCardMovie extends Component{
     constructor(props){
         super(props);
-        this.state = {
+        this.state = {  ////guarda los datos de la peli en el state 
             data: props.data,
             verMas: false,
             textoBoton: "ver mas",
