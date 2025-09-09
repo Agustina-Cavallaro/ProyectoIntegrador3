@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";    
+import Formulario from "../Formulario /Formulario";
 // import Formulario from "../Formulario /Formulario";
 
 
@@ -10,6 +11,7 @@ function Header() {
       <div className="logo">UdeSA Movies</div> 
       <nav className="nav">
         <ul>
+         
           <li><Link to="/">Home</Link></li>
           <li><Link to="/favoritos">Favoritos</Link></li> 
           <li><Link to="/popularMovies">Peliculas Populares</Link></li>
@@ -17,6 +19,7 @@ function Header() {
           <li><Link to="/upcoming">Peliculas Próximamente</Link></li>
           <li><Link to="/popularSeries">Series populares</Link></li>
           <li><Link to="/topSeries">Top series</Link></li>
+          <Formulario/>
         </ul>
       </nav>
     </header>
