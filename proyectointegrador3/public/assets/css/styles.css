@@ -84,6 +84,10 @@ nav {
     width: 15%;
 }
 
+.buscador-boton{
+    background-color: lightgreen
+}
+
 @media(min-width: 765px){
     nav {
         grid-template-columns: 4fr 3fr;
@@ -93,3 +97,4 @@ nav {
 .noMostrar {
     display: none;
 }
+
