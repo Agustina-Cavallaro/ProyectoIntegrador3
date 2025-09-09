@@ -29,7 +29,7 @@ function App() {
 
       <Route path="/movie/id/:id" component={UnaPeli} />
       <Route path="/tv/id/:id" component={UnaSerie} />
-      <Route path="/results/:name" component={Results}/> 
+      <Route path="/results/:busqueda" component={Results}/> 
       <Route path="*" component={NotFound}/>  {/* asterisco abarca cualquier otra ruta que no sea estas */}
     </Switch>  
   );

@@ -1,33 +1,77 @@
+
 import React, { Component } from "react";
-import {withRouter} from "react-router-dom"
+import { withRouter } from "react-router-dom"; // v5
 
-class Formulario extends Component{
-    constructor(props){
-        super(props);
-        this.state= {
-            busquedaValor : "", 
-            kind: "movie" // para ver si busk pel o serie  --> valor incial peli 
-        }
-    };
+class Formulario extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { input: "" };
+  }
 
-    evitarSubmit(e){
-        e.preventDefault();
-        this.props.history.push(`/results/${this.state.busquedaValor}`)
-    }
+  // ahora son arrow functions, no necesitan bind
+  controlarForm = (e) => {
+    e.preventDefault();
+    this.props.history.push('/results/' + this.state.input);
+  };
 
-    controlarCambios(event){
-        this.setState({busquedaValor: event.target.value});
-    };
+  controlarInput = (e) => {
+    this.setState({ input: e.target.value });
+  };
 
-    render(){
-        return(
-            <form onSubmit={(event)=> this.evitarSubmit(event)}>
-                <input type="text" placeholder="Buscar pelicula o serie..." onChange={(event)=>this.controlarCambios(event)} value={this.state.busquedaValor} />
-                <button type="submit" className="btn btn-success btn-sm"> Buscar... </button>
-            </form>
-        )
-    }
+  render() {
+    return (
+      <form onSubmit={this.controlarForm} className="buscador-form">
+        <input
+          placeholder="Buscador"
+          value={this.state.input}
+          onChange={this.controlarInput}
+          className="buscador-input"
+        />
+        <button type="submit" className="buscador-boton">Buscar</button>
+      </form>
+    );
+  }
 }
 
+export default withRouter(Formulario);
+
+
+// import React, { Component } from "react";
+// // import { withRouter } from "react-router-dom";
+// // import "./styles.css";
+
+// class Formulario extends Component {
+//   constructor(props){
+//     super(props);
+//     this.state = {
+//       input: ""
+//     };
+//   }
+
+//   controlarForm(e){
+//     e.preventDefault();
+//     this.props.history.push('/results/' + this.state.input);
+//   }
+
+//   controlarInput(e){
+//     this.setState({ input: e.target.value });
+//   }
+//     render(){
+//         return(
+//             <form onSubmit={(evento) => this.controlarForm(evento)} className="buscador-form">
+//         <input 
+//           placeholder='Buscador' 
+//           value={this.state.input} 
+//           onChange={(evento) => this.controlarInput(evento)} 
+//           className="buscador-input"
+//         />
+
+//         <button type='submit' className="buscador-boton">Buscar</button>
+
+//       </form>
+//         )
+//     }
+// }
+
 // export default Formulario; 
-export default withRouter(Formulario)
+// export default withRouter(Formulario)
