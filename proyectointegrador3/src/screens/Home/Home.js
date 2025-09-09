@@ -22,11 +22,11 @@ function Home(){
                  
                 <h2 className="alert alert-primary">Popular movies this week</h2>
                 <PopularMovies filter={true} />
-                <Link to="/popular">Ver Todas</Link>
+                <Link to="/popularMovies">Ver Todas</Link>
 
                 <h2 class="alert alert-warning">Popular series this week</h2>
                 <PopularSeries filter={true}/>
-                <Link to="">Ver Todas</Link> {/* me falta esta ruta*/}
+                <Link to="/popularSeries">Ver Todas</Link> 
 
                 <h2 class="alert alert-primary">Movies now playing</h2>
                 <NowPlayingMovies filter={true}/>
@@ -34,7 +34,7 @@ function Home(){
 
                 <h2 class="alert alert-primary">Top Rated series</h2>
                 <TopRatedSeries filter={true}/>
-                <Link to="">Ver Todas</Link> {/* me falta esta ruta*/}
+                <Link to="/topSeries">Ver Todas</Link> 
 
                 <h2 class="alert alert-warning">Upcoming Movies</h2>
                 <UpcomingMovies filter={true}/>
