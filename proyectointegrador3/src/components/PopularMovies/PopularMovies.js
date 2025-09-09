@@ -8,23 +8,25 @@ class PopularMovies extends Component {
         this.state = {
             datos: [], //aca voy a guardar mis datos cuando haga el fetch
             filter: props.filter, //me dice si filtro los primeros 4 o no
-            contador:1
+            contador:1,
+            valorFormulario: "",
         }
     }
-
-    render(){
-        let filtroONo = (this.state.filter? this.state.datos.filter((_,i) => i<4) : this.state.datos) //si filter es verdadero, me devuelve una lista con los primero 4, sino todos los datos que ya tenia
-        return(
-            <React.Fragment>
-                <section className="row cards" id="movies">
-                        {(this.state.datos.length === 0) ?  <Loading/> : filtroONo.map((card) => <SingleCardMovie data={card} pelicula={true}/>)}
-                </section>
-                { !this.state.filter ? <button onClick={() => this.cargarMas()}> Cargar Más </button> : null}
-            </React.Fragment>
-        )
+    evitarSubmit(event){
+        event.preventDefault();
     }
 
-    cargarMas = () => {
+    controlarCambios(event){
+        this.setState({
+            valorFormulario: event.target.value
+            }
+        )}
+
+    filtrarElementos (busqueda, datos) { 
+        return datos.filter(objetoElemento=> objetoElemento.title.toLowerCase().includes(busqueda.toLowerCase()))
+    }
+
+    cargarMas () {
         this.setState(prev => ({contador: prev.contador +1}))
     }
 
@@ -66,6 +68,30 @@ class PopularMovies extends Component {
         ) )
         .catch((error) => console.log(error))
     }
+    }
+
+    render(){
+        let tieneBusqueda = this.state.valorFormulario !== ""; ///devuelve booleano
+        let filtroONo = (this.state.filter? this.state.datos.filter((_,i) => i<4) : this.state.datos) //si filter es verdadero, me devuelve una lista con los primero 4, sino todos los datos que ya tenia
+        let filtrarFormularioONo = tieneBusqueda ? this.filtrarElementos(this.state.valorFormulario, filtroONo) : filtroONo 
+        return(
+            <React.Fragment>
+                {/* filtrar */}
+                <form onSubmit={(event)=> this.evitarSubmit(event)}>
+                    <input type="text" onChange= {(event)=> this.controlarCambios(event)} value={this.state.valorFormulario}/>
+                </form>
+
+                {/* Cargar Mas */}
+                { !this.state.filter ? <button onClick={() => this.cargarMas()}> Cargar Más </button> : null}
+
+                {/* Seccion cartas de cada pelicula/serie */}
+                <section className="row cards" id="movies">
+                        {!tieneBusqueda ? 
+                        ((this.state.datos.length === 0) ? <Loading/> : filtroONo.map((card) => <SingleCardMovie key={card.id} data={card} pelicula={true}/>))  :          
+                        filtrarFormularioONo.map((card) => <SingleCardMovie key={card.id} data={card} pelicula={true}/>)}  {/* el problema era que no le habia puesto key*/}
+                </section>          
+            </React.Fragment>
+        )
     }
 }
 
