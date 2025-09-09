@@ -24,7 +24,7 @@ class PopularSeries extends Component {
         )}
 
     filtrarElementos (busqueda, datos) { 
-        return datos.filter(objetoElemento=> objetoElemento.title.toLowerCase().includes(busqueda.toLowerCase()))
+        return datos.filter(objetoElemento=> objetoElemento.name.toLowerCase().includes(busqueda.toLowerCase()))
     }
 
     cargarMas () {
