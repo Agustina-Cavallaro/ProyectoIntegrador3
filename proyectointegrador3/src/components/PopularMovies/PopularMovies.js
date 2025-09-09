@@ -31,42 +31,39 @@ class PopularMovies extends Component {
     }
 
     componentDidMount(){
-        // el fetch te lo da la API asi para node
-        const url = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+        // el fetch te lo da la API asi para js
         const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYmZlMjU5MjliNzExMDQ1ZDQwNGMyM2UxOTE4ZTJlZiIsIm5iZiI6MTc1NzE3MjgwMS4zNywic3ViIjoiNjhiYzU0NDE3OTY1MmEwNGU3NGU1OTY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.mOmvs0Cidnu6ANiw9hZyOJugT7wHhqXjCoVFVVCwNNY'
-        }
-        };
-
-        fetch(url, options)
-        .then(res => res.json())
-        .then(json => this.setState({
-            datos: json.results //guardo mis resultados del fetch pasados a json, en lo que era [] abajo de super();
-        }))
-        .catch(err => console.error(err));
+            method: 'GET',
+            headers: {
+              accept: 'application/json',
+              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYmZlMjU5MjliNzExMDQ1ZDQwNGMyM2UxOTE4ZTJlZiIsIm5iZiI6MTc1NzE3MjgwMS4zNywic3ViIjoiNjhiYzU0NDE3OTY1MmEwNGU3NGU1OTY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.mOmvs0Cidnu6ANiw9hZyOJugT7wHhqXjCoVFVVCwNNY'
+            }
+          };
+          
+          fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+            .then(res => res.json())
+            .then(json => this.setState({
+                datos: json.results //guardo mis resultados del fetch pasados a json, en lo que era [] abajo de super();
+            }))
+            .catch(err => console.error(err));
     }
 
     componentDidUpdate(prevProps, prevState){
         if(prevState.contador !== this.state.contador){ 
-        const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${this.state.contador}`;
-        const options = {
-          method: 'GET',
-          headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYmZlMjU5MjliNzExMDQ1ZDQwNGMyM2UxOTE4ZTJlZiIsIm5iZiI6MTc1NzE3MjgwMS4zNywic3ViIjoiNjhiYzU0NDE3OTY1MmEwNGU3NGU1OTY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.mOmvs0Cidnu6ANiw9hZyOJugT7wHhqXjCoVFVVCwNNY'
-          }
-        }
-        fetch(url, options)
-        .then(res => res.json())
-        .then((json)=> this.setState((prev)=> ({
-            datos: prev.datos.concat(json.results)
-        })
-
-        ) )
-        .catch((error) => console.log(error))
+            const options = {
+                method: 'GET',
+                headers: {
+                  accept: 'application/json',
+                  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYmZlMjU5MjliNzExMDQ1ZDQwNGMyM2UxOTE4ZTJlZiIsIm5iZiI6MTc1NzE3MjgwMS4zNywic3ViIjoiNjhiYzU0NDE3OTY1MmEwNGU3NGU1OTY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.mOmvs0Cidnu6ANiw9hZyOJugT7wHhqXjCoVFVVCwNNY'
+                }
+              };
+              
+            fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${this.state.contador}`, options)
+            .then(res => res.json())
+            .then((json)=> this.setState((prev)=> ({
+                datos: prev.datos.concat(json.results)
+            })     ) )
+            .catch((error) => console.log(error))
     }
     }
 
