@@ -1,14 +1,13 @@
 // components/DetailSeries/DetailSeries.jsx
 import React, { Component } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 class UnaSerie extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: null,
-      loading: true,
-      error: null,
       verMas: false,
       textoBoton: "ver más",
       clase: "noMostrar",
@@ -24,54 +23,43 @@ class UnaSerie extends Component {
       .catch((error) => this.setState({ error, loading: false }));
   }
 
-  boton = () => {
-    this.setState({
-      verMas: !this.state.verMas,
-      textoBoton: this.state.textoBoton === "ver más" ? "ver menos" : "ver más",
-      clase: this.state.textoBoton === "ver más" ? "" : "noMostrar",
-    });
-  };
+  // boton = () => {
+  //   this.setState({
+  //     verMas: !this.state.verMas,
+  //     textoBoton: this.state.textoBoton === "ver más" ? "ver menos" : "ver más",
+  //     clase: this.state.textoBoton === "ver más" ? "" : "noMostrar",
+  //   });
+  // };
 
   render() {
-    const { data, loading, error, textoBoton, clase } = this.state;
-    if (loading) return <p>Cargando…</p>;
-    if (error) return <p>Ocurrió un error</p>;
+    const { data } = this.state;
     if (!data) return null;
 
     // Armar géneros
-    let generos = "";
+    let generos = [];
     if (data.genres) {
-      generos = data.genres.map((g) => g.name).join(", ");
+      for (let i = 0; i < data.genres.length; i++) {
+        generos.push(data.genres[i].name);
+      }
     }
 
     return (
+      <React.Fragment>
+        <Header/>
       <article className="character-card detail">
-        <img
-          src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-          alt={data.name}
-        />
+        <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt={data.name}/>
         <h2>{data.name}</h2>
-        <p>
-          <strong>Calificación:</strong> {data.vote_average}
+        <p><strong>Calificación:</strong> {data.vote_average} </p>
+        <p> <strong>Fecha de estreno:</strong> {data.first_air_date}</p>
+        <p><strong>Géneros:</strong> 
+          {generos.map((gene, i) => (
+            <p key={i}> {gene} </p>
+          ))}
         </p>
-        <p>
-          <strong>Fecha de estreno:</strong> {data.first_air_date}
-        </p>
-        <p>
-          <strong>Géneros:</strong> {generos}
-        </p>
-        <button className="more" onClick={this.boton}>
-          {textoBoton}
-        </button>
-
-        <section className="extra">
-          <p className={clase}>
-            <strong>Sinopsis:</strong> {data.overview}
-          </p>
-        </section>
-
-        <Link to="/" className="delete">Volver</Link>
+          <p><strong>Sinopsis:</strong> {data.overview}</p>  
       </article>
+      <Footer/>
+      </React.Fragment>
     );
   }
 }

@@ -63,27 +63,3 @@ class Results extends Component {
 
 export default Results;
 
-    
-//     render(){
-
-//         const { resultados, cargando } = this.state;
-
-//     if (cargando) return <h3>Cargando...</h3>;
-
-//     if (resultados.length === 0) return <h3>No se encontraron personajes</h3>;
-
-//    return (
-//   <React.Fragment> 
-//     <Header/>  
-//     <div>
-//       {resultados.map(peli => (
-//         <SingleCardMovie key={peli.id} data={peli} />
-//       ))}
-//     </div>
-//     <Footer/> 
-//   </React.Fragment>
-// );
-//     }
-// }
-
-// export default Results

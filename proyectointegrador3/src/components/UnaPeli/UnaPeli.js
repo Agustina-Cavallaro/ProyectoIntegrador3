@@ -1,12 +1,12 @@
 import React, { Component } from "react";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 class UnaPeli extends Component {
   constructor(props){
     super(props);
     this.state = { 
       data: null,
-      loading: true,
-      error: null,
       verMas: false,
       textoBoton: "ver mas",
       clase: "noMostrar"
@@ -21,18 +21,8 @@ class UnaPeli extends Component {
       .catch(error => this.setState({ error, loading: false }));
   }
 
-  boton = () => {
-    this.setState({
-      verMas: !this.state.verMas,
-      textoBoton: this.state.textoBoton === "ver mas" ? "ver menos" : "ver mas",
-      clase: this.state.textoBoton === "ver mas" ? "" : "noMostrar"
-    });
-  };
-
   render(){
-    const { data, loading, error } = this.state;
-    if (loading) return <p>Cargando…</p>;
-    if (error) return <p>Ocurrió un error</p>;
+    const { data } = this.state;
     if (!data) return null;
 
     let generos = [];
@@ -43,6 +33,8 @@ class UnaPeli extends Component {
     }
 
     return (
+      <React.Fragment>
+      <Header/>
       <article className="character-card detail">
         <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt={data.original_title} />
         <h2>{data.original_title}</h2>
@@ -56,6 +48,8 @@ class UnaPeli extends Component {
         <p><strong>Duración:</strong> {data.runtime} min</p>
         <p><strong>Sinopsis:</strong> {data.overview}</p>
       </article>
+      <Footer/>
+      </React.Fragment>
     );
   }
 }
