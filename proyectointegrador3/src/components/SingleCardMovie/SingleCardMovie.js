@@ -7,7 +7,7 @@ class SingleCardMovie extends Component{
         this.state = {  ////guarda los datos de la peli en el state 
             data: props.data,
             verMas: false,
-            textoBoton: "ver mas",
+            textoBoton: " Ver mas ",
             clase: "noMostrar",
             pelicula: props.pelicula
         }
@@ -16,8 +16,8 @@ class SingleCardMovie extends Component{
     boton (){
         this.setState({
             verMas: !this.state.verMas,
-            textoBoton: this.state.textoBoton === "ver mas"? "ver menos" : "ver mas",
-            clase: this.state.textoBoton === "ver mas" ? "" : "noMostrar"
+            textoBoton: this.state.textoBoton === " Ver mas "? " Ver menos " : " Ver mas ",
+            clase: this.state.textoBoton === " Ver mas " ? "" : "noMostrar"
         })
     }
 
@@ -28,9 +28,9 @@ class SingleCardMovie extends Component{
                 <div className="cardBody">
                     <h5 className="card-title">{this.state.data.title}</h5>
                     <p className={"card-text " + this.state.clase}>{this.state.data.overview}</p>
-                    <button onClick={() => this.boton()} className="btn btn-primary"> {this.state.textoBoton}</button>
-                    {this.state.pelicula ? <Link to={`/movie/id/${this.state.data.id}`}>Ver detalle</Link> : <Link to={`/tv/id/${this.state.data.id}`}>Ver detalle</Link>}
-                    <button className="btn alert-primary">🩶</button> {/* Aca le falta el on clic para hacerlo funcional*/}
+                    <button onClick={() => this.boton()} className="botonesVer"> {this.state.textoBoton}</button>
+                    {this.state.pelicula ? <Link to={`/movie/id/${this.state.data.id}`} className="botonesVer"> Ver detalle </Link> : <Link to={`/tv/id/${this.state.data.id}`} className="botonesVer"> Ver detalle </Link>}
+                    <button className="botonesVer">🩶</button> {/* Aca le falta el on clic para hacerlo funcional*/}
                 </div>
             </article>
         )
