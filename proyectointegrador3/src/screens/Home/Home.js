@@ -18,25 +18,23 @@ function Home(){
             {/* <SearchForm/> */}
             <Formulario/>
             <div className="container">
-                <h1>UdeSA Movies</h1>
-                 
-                <h2 className="alert alert-primary">Popular movies this week</h2>
+                <h2 className="categoriaHome">Popular movies this week</h2>
                 <PopularMovies filter={true} />
                 <Link to="/popularMovies">Ver Todas</Link>
 
-                <h2 class="alert alert-warning">Popular series this week</h2>
+                <h2 class="categoriaHome">Popular series this week</h2>
                 <PopularSeries filter={true}/>
                 <Link to="/popularSeries">Ver Todas</Link> 
 
-                <h2 class="alert alert-primary">Movies now playing</h2>
+                <h2 class="categoriaHome">Movies now playing</h2>
                 <NowPlayingMovies filter={true}/>
                 <Link to="/nowplaying">Ver Todas</Link>
 
-                <h2 class="alert alert-primary">Top Rated series</h2>
+                <h2 class="categoriaHome">Top Rated series</h2>
                 <TopRatedSeries filter={true}/>
                 <Link to="/topSeries">Ver Todas</Link> 
 
-                <h2 class="alert alert-warning">Upcoming Movies</h2>
+                <h2 class="categoriaHome">Upcoming Movies</h2>
                 <UpcomingMovies filter={true}/>
                 <Link to="/upcoming">Ver Todas</Link>
             </div>

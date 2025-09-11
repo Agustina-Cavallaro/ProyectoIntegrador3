@@ -15,6 +15,14 @@ nav {
 .nav a:hover{
     font-weight: bold;
 }
+
+/* Home */
+.categoriaHome{
+    background-color: lightgray;
+    color: whitesmoke;
+    text-align: center;
+    border-radius: 15cap;
+}
 .search-form, .filter-form {
     padding: .5rem 1rem;
     display: grid;
@@ -28,6 +36,20 @@ nav {
     line-height: 1;
     font-size: 0.9rem;
 }
+/* single card  */
+.botonesVer {
+    background-color: lightgray;
+    color: black;
+    border-width: 0;
+    border-radius: 15cap;
+    padding: 1.7%;
+    
+}
+.cardBody {
+    margin-top: 20px;
+    text-align: center;
+}
+
 .search-form input,
 .filter-form input {
     border: 1px solid #ccc;
@@ -49,14 +71,12 @@ nav {
     justify-content: space-between;
     margin-bottom: 2%;
 }
-.cardBody {
-    margin-top: 20px;
-}
 .single-card-people {
     width: 19%;
 }
 .single-card-movie {
     width: 24%;
+    margin-top: 1%;
 }
 .single-card-playing {
     width: 15%;
