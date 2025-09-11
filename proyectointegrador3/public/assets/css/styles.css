@@ -104,6 +104,24 @@ nav {
     width: 15%;
 }
 
+.buscador-boton{
+    background-color: lightgreen
+}
+
+/* PARA RESULTADOIS DE BSUQUEDA */
+.resultados-container{
+    max-width:1100px;
+    margin:0 auto;
+}
+.resultados-lista{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.resultados-lista img{
+    width:100%;
+}
+
 @media(min-width: 765px){
     nav {
         grid-template-columns: 4fr 3fr;
@@ -113,3 +131,4 @@ nav {
 .noMostrar {
     display: none;
 }
+

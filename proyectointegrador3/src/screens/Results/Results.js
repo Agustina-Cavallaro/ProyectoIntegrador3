@@ -13,8 +13,11 @@ class Results extends Component {
   }
 
   componentDidMount() {
+    // fetch(
+    //   `https://api.themoviedb.org/3/search/movie?query=${this.state.busqueda}&api_key=9ed45d655a81dcc3d8732fddd5bc0588`
+    // )
     fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${this.state.busqueda}&api_key=9ed45d655a81dcc3d8732fddd5bc0588`
+      `https://api.themoviedb.org/3/search/multi?query=${this.state.busqueda}&api_key=0e24f8864be45bfee7d05660d5fc8739`
     )
       .then((res) => res.json())
       .then((data) => {
