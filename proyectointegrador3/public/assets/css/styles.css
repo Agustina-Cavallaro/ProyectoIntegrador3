@@ -22,7 +22,7 @@ nav {
 
 /* Home */
 .categoriaHome{
-    background-color: lightgray;
+    background-color:  #222;
     color: whitesmoke;
     text-align: center;
     border-radius: 15cap;
@@ -42,8 +42,8 @@ nav {
 }
 /* single card  */
 .botonesVer {
-    background-color: lightgray;
-    color: black;
+    background-color: #222;
+    color: white;
     border-width: 0;
     border-radius: 15cap;
     padding: 1.7%;
