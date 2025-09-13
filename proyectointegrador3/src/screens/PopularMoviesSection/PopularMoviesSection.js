@@ -7,7 +7,7 @@ function PopularMoviesSection(){
     return(
         <React.Fragment>
             <Header/>
-            <h2 className="alert alert-primary">Popular movies this week</h2>
+            <h2 className="categoriaHome">Popular movies this week</h2>
             <PopularMovies filter={false}/>
             <Footer/> 
         </React.Fragment>

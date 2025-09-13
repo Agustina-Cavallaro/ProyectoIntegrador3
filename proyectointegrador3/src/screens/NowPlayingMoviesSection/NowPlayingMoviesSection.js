@@ -7,7 +7,7 @@ function NowPlayingMoviesSection(){
     return(
         <React.Fragment>
             <Header/>
-            <h2 class="alert alert-primary">Movies now playing</h2>
+            <h2 class="categoriaHome">Movies now playing</h2>
             <NowPlayingMovies filter={false}/>
             <Footer/> 
         </React.Fragment>
