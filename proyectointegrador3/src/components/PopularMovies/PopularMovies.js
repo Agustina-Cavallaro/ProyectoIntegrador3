@@ -74,9 +74,11 @@ class PopularMovies extends Component {
         return(
             <React.Fragment>
                 {/* filtrar */}
-                <form onSubmit={(event)=> this.evitarSubmit(event)}>
-                    <input type="text" onChange= {(event)=> this.controlarCambios(event)} value={this.state.valorFormulario}/>
-                </form>
+                { !this.state.filter ?   
+                    <form onSubmit={(event)=> this.evitarSubmit(event)}>
+                        <input type="text" onChange= {(event)=> this.controlarCambios(event)} value={this.state.valorFormulario}/>
+                    </form> 
+                : null}
 
                 {/* Cargar Mas */}
                 { !this.state.filter ? <button onClick={() => this.cargarMas()}> Cargar Más </button> : null}

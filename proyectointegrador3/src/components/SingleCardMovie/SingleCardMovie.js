@@ -25,13 +25,23 @@ class SingleCardMovie extends Component{
         return(
             <article className="single-card-movie">
                 <img src={"https://image.tmdb.org/t/p/w342" + this.state.data.poster_path} className="card-img-top" alt="..."/>
+                {this.state.pelicula ? 
                 <div className="cardBody">
                     <h5 className="card-title">{this.state.data.title}</h5>
                     <p className={"card-text " + this.state.clase}>{this.state.data.overview}</p>
                     <button onClick={() => this.boton()} className="botonesVer"> {this.state.textoBoton}</button>
-                    {this.state.pelicula ? <Link to={`/movie/id/${this.state.data.id}`} className="botonesVer"> Ver detalle </Link> : <Link to={`/tv/id/${this.state.data.id}`} className="botonesVer"> Ver detalle </Link>}
+                    <Link to={`/movie/id/${this.state.data.id}`} className="botonesVer"> Ver detalle </Link>
                     <button className="botonesVer">🩶</button> {/* Aca le falta el on clic para hacerlo funcional*/}
                 </div>
+                :
+                <div className="cardBody">
+                    <h5 className="card-title">{this.state.data.name}</h5>
+                    <p className={"card-text " + this.state.clase}>{this.state.data.overview}</p>
+                    <button onClick={() => this.boton()} className="botonesVer"> {this.state.textoBoton}</button>
+                    <Link to={`/tv/id/${this.state.data.id}`} className="botonesVer"> Ver detalle </Link>
+                    <button className="botonesVer">🩶</button> {/* Aca le falta el on clic para hacerlo funcional*/}
+                </div>
+                }
             </article>
         )
     }

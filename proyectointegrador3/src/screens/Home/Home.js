@@ -8,15 +8,11 @@ import NowPlayingMovies from "../../components/NowPlayingMovies/NowPlayingMovies
 import UpcomingMovies from "../../components/UpcomingMovies/UpcomingMovies";
 import PopularSeries from "../../components/PopularSeries/PopularSeries";
 import TopRatedSeries from "../../components/TopRatedSeries/TopRatedSeries";
-import Formulario from "../../components/Formulario /Formulario";
-// import SearchForm from "../../components/SearchForm/SearchForm";
 
 function Home(){
     return(
         <React.Fragment>
             <Header/>
-            {/* <SearchForm/> */}
-            <Formulario/>
             <div className="container">
                 <h2 className="categoriaHome">Popular movies this week</h2>
                 <PopularMovies filter={true} />
