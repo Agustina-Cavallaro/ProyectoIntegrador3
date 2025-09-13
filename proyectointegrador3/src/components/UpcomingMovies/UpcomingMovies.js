@@ -79,6 +79,7 @@ class UpcomingMovies extends Component {
                 {/* filtrar */}
                 { !this.state.filter ?   
                     <form onSubmit={(event)=> this.evitarSubmit(event)}>
+                        <label> Type to filter </label>
                         <input type="text" onChange= {(event)=> this.controlarCambios(event)} value={this.state.valorFormulario}/>
                     </form> 
                 : null}
