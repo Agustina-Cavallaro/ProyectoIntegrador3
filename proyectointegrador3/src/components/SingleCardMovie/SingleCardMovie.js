@@ -35,30 +35,36 @@ class SingleCardMovie extends Component{
         return false;
       }
     
-      // ✅ Agregar o quitar de favoritos SIN splice ni break
       manejarFavorito = () => {
         const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
         let guardados = localStorage.getItem(key);
         let favoritos = guardados ? JSON.parse(guardados) : [];
-    
+      
         let esta = false;
         let nuevosFavoritos = [];
-    
+      
         for (let i = 0; i < favoritos.length; i++) {
           if (favoritos[i].id === this.state.data.id) {
-            esta = true; // lo encontré, no lo agrego
+            esta = true;
           } else {
-            nuevosFavoritos.push(favoritos[i]); // mantengo los otros
+            nuevosFavoritos.push(favoritos[i]);
           }
         }
-    
+      
         if (!esta) {
-          nuevosFavoritos.push(this.state.data); // si no estaba, lo agrego
+          nuevosFavoritos.push(this.state.data);
         }
-    
+      
         localStorage.setItem(key, JSON.stringify(nuevosFavoritos));
-        this.setState({ esFavorito: !this.state.esFavorito });
+      
+   
+        this.setState({ esFavorito: !this.state.esFavorito }, () => {
+          if (this.props.actualizarLista) {
+            this.props.actualizarLista();
+          }
+        });
       };
+      
 
     render(){
         return(

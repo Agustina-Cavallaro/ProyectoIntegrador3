@@ -32,7 +32,7 @@ class FavComponent extends Component {
  
         <h2>Películas</h2>
         {this.state.peliculasFavoritas.length === 0 ? (
-          <p>No tienes películas favoritas.</p>
+          <p>No tenes películas favoritas.</p>
         ) : (
           <div className="favoritos-grid">
             {this.state.peliculasFavoritas.map((movie) => (
@@ -44,7 +44,7 @@ class FavComponent extends Component {
    
         <h2>Series</h2>
         {this.state.seriesFavoritas.length === 0 ? (
-          <p>No tienes series favoritas.</p>
+          <p>No tenes series favoritas.</p>
         ) : (
           <div className="favoritos-grid">
             {this.state.seriesFavoritas.map((serie) => (
