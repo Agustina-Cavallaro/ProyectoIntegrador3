@@ -25,8 +25,25 @@ class NowPlayingMovies extends Component {
     filtrarElementos (busqueda, datos) { 
         return datos.filter(objetoElemento=> objetoElemento.title.toLowerCase().includes(busqueda.toLowerCase()))
     }
-    cargarMas (){
-        this.setState(prev => ({contador: prev.contador +1}))
+
+    cargarMas(){
+        const options = {
+            method: 'GET',
+            headers: {
+              accept: 'application/json',
+              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYmZlMjU5MjliNzExMDQ1ZDQwNGMyM2UxOTE4ZTJlZiIsIm5iZiI6MTc1NzE3MjgwMS4zNywic3ViIjoiNjhiYzU0NDE3OTY1MmEwNGU3NGU1OTY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.mOmvs0Cidnu6ANiw9hZyOJugT7wHhqXjCoVFVVCwNNY'
+            }
+          };
+          
+        fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${this.state.contador}`, options)
+        .then(res => res.json())
+        .then((datos)=> {
+            this.setState({
+                datos: this.state.datos.concat(datos.results),
+                contador: this.state.contador + 1
+            })
+        })
+        .catch((error) => console.log(error))
     }
 
     componentDidMount(){
@@ -47,27 +64,6 @@ class NowPlayingMovies extends Component {
             .catch(err => console.error(err));
     }
 
-    componentDidUpdate(prevProps, prevState){
-        if(prevState.contador !== this.state.contador){ 
-            const options = {
-                method: 'GET',
-                headers: {
-                  accept: 'application/json',
-                  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYmZlMjU5MjliNzExMDQ1ZDQwNGMyM2UxOTE4ZTJlZiIsIm5iZiI6MTc1NzE3MjgwMS4zNywic3ViIjoiNjhiYzU0NDE3OTY1MmEwNGU3NGU1OTY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.mOmvs0Cidnu6ANiw9hZyOJugT7wHhqXjCoVFVVCwNNY'
-                }
-              };
-              
-            fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${this.state.contador}`, options)
-            .then(res => res.json())
-            .then((json)=> this.setState((prev)=> ({
-                datos: prev.datos.concat(json.results)
-            })
-
-            ) )
-            .catch((error) => console.log(error))
-    }
-    }
-
     render(){
         let filtroONo = (this.state.filter? this.state.datos.filter((_,i) => i<4) : this.state.datos) //si filter es verdadero, me devuelve una lista con los primero 4, sino todos los datos que ya tenia
         let tieneBusqueda = this.state.valorFormulario !== ""; ///devuelve booleano
@@ -82,15 +78,16 @@ class NowPlayingMovies extends Component {
                     </form> 
                 : null}
 
-                {/* Cargar Mas */}
-                { !this.state.filter ? <button onClick={() => this.cargarMas()}> Cargar Más </button> : null}
-
                 {/* Seccion cartas de cada pelicula/serie */}
                 <section className="row cards" id="movies">
                         {!tieneBusqueda ? 
                         ((this.state.datos.length === 0) ? <Loading/> : filtroONo.map((card) => <SingleCardMovie key={card.id} data={card} pelicula={true}/>))  :          
                         filtrarFormularioONo.map((card) => <SingleCardMovie key={card.id} data={card} pelicula={true}/>)}  {/* el problema era que no le habia puesto key*/}
                 </section>
+
+                {/* Cargar Mas */}
+                { !this.state.filter ? <button onClick={() => this.cargarMas()}> Cargar Más </button> : null}
+                
             </React.Fragment>
         )
     }
