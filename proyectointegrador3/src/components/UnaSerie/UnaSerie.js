@@ -23,13 +23,7 @@ class UnaSerie extends Component {
       .catch((error) => this.setState({ error, loading: false }));
   }
 
-  // boton = () => {
-  //   this.setState({
-  //     verMas: !this.state.verMas,
-  //     textoBoton: this.state.textoBoton === "ver más" ? "ver menos" : "ver más",
-  //     clase: this.state.textoBoton === "ver más" ? "" : "noMostrar",
-  //   });
-  // };
+
 
   render() {
     const { data } = this.state;

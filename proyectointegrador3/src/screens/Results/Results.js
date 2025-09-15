@@ -44,10 +44,7 @@ class Results extends Component {
             </h1>
             <section className="resultados-lista">
               {pelis.map((elm, idx) => (
-                <SingleCardMovie
-                  data={elm}
-                  key={idx + elm.original_title}
-                />
+                <SingleCardMovie data={elm} key={idx + elm.original_title} />
               ))}
             </section>
 

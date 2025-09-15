@@ -7,7 +7,7 @@ function UpcpmingMoviesSection(){
     return(
         <React.Fragment>
             <Header/>
-            <h2 class="categoriaHome">Upcoming Movies</h2>
+            <h2 class="categoriaHome">Películas Próximamente</h2>
             <UpcomingMovies filter={false}/>
             <Footer/> 
         </React.Fragment>

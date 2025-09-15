@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom"; // v5
+import { withRouter } from "react-router-dom"; 
 
 class Formulario extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class Formulario extends Component {
     this.state = { input: "" };
   }
 
-  // ahora son arrow functions, no necesitan bind
+
   controlarForm = (e) => {
     e.preventDefault();
     this.props.history.push('/results/' + this.state.input);

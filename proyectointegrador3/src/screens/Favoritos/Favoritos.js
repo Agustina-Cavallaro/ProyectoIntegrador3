@@ -7,7 +7,7 @@ function Favoritos(){
     return(
         <React.Fragment>
             <Header/>
-            <FavComponent />
+            <FavComponent  />
             <Footer/> 
         </React.Fragment>
     )

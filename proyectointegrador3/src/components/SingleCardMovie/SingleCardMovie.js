@@ -22,43 +22,49 @@ class SingleCardMovie extends Component{
         })
     }
     estaEnFavoritos() {
-        const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
-        let guardados = localStorage.getItem(key);
-        if (guardados) {
-          let favoritos = JSON.parse(guardados);
-          for (let i = 0; i < favoritos.length; i++) {
-            if (favoritos[i].id === this.props.data.id) {
-              return true;
-            }
-          }
-        }
-        return false;
-      }
-    
-      // ✅ Agregar o quitar de favoritos SIN splice ni break
-      manejarFavorito = () => {
-        const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
-        let guardados = localStorage.getItem(key);
-        let favoritos = guardados ? JSON.parse(guardados) : [];
-    
-        let esta = false;
-        let nuevosFavoritos = [];
-    
+      const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
+      let guardados = localStorage.getItem(key);
+      if (guardados) {
+        let favoritos = JSON.parse(guardados);
         for (let i = 0; i < favoritos.length; i++) {
-          if (favoritos[i].id === this.state.data.id) {
-            esta = true; // lo encontré, no lo agrego
-          } else {
-            nuevosFavoritos.push(favoritos[i]); // mantengo los otros
+          if (favoritos[i].id === this.props.data.id) {
+            return true;
           }
         }
-    
-        if (!esta) {
-          nuevosFavoritos.push(this.state.data); // si no estaba, lo agrego
+      }
+      return false;
+    }
+  
+    // Agregar o sacar de favoritos 
+    manejarFavorito = () => {
+      const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
+      let guardados = localStorage.getItem(key);
+      let favoritos = guardados ? JSON.parse(guardados) : [];
+  
+      let estaba = false;
+      let nuevosFavoritos = [];
+  
+      for (let i = 0; i < favoritos.length; i++) {
+        if (favoritos[i].id === this.state.data.id) {
+          estaba = true;            // si estaba, NO lo copio al nuevo array
+        } else {
+          nuevosFavoritos.push(favoritos[i]); // dejo los demás
         }
-    
-        localStorage.setItem(key, JSON.stringify(nuevosFavoritos));
-        this.setState({ esFavorito: !this.state.esFavorito });
-      };
+      }
+  
+      if (!estaba) {
+        nuevosFavoritos.push(this.state.data); // si no estaba lo agrego
+      }
+  
+      localStorage.setItem(key, JSON.stringify(nuevosFavoritos));
+      this.setState({ esFavorito: !this.state.esFavorito });
+  
+     
+      if (this.props.actualizarLista) { ///vine del component
+        this.props.actualizarLista();
+      }
+    };
+      ;
 
     render(){
         return(
@@ -78,11 +84,7 @@ class SingleCardMovie extends Component{
                     <p className={"card-text " + this.state.clase}>{this.state.data.overview}</p>
                     <button onClick={() => this.boton()} className="botonesVer"> {this.state.textoBoton}</button>
                     <Link to={`/tv/id/${this.state.data.id}`} className="botonesVer"> Ver detalle </Link>
-                    <button onClick={this.manejarFavorito} className="botonesVer">
-              {this.state.esFavorito
-                ? "Quitar de favoritos"
-                : "Agregar a favoritos"}
-            </button>
+                    <button onClick={this.manejarFavorito} className="botonesVer"> {this.state.esFavorito ? "Quitar de favoritos" : "Agregar a favoritos"} </button>
                 </div>
                 }
 

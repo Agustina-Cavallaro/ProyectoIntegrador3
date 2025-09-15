@@ -7,7 +7,7 @@ function TopRatedSeriesSection(){
     return(
         <React.Fragment>
             <Header/>
-            <h2 class="categoriaHome">Top Rated series</h2>
+            <h2 class="categoriaHome">Mejores Series</h2>
             <TopRatedSeries filter={false}/>
             <Footer/>
         </React.Fragment>
