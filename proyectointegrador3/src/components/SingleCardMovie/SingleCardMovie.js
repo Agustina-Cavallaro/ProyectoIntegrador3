@@ -35,7 +35,6 @@ class SingleCardMovie extends Component{
         return false;
       }
     
-      // ✅ Agregar o quitar de favoritos SIN splice ni break
       manejarFavorito = () => {
         const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
         let guardados = localStorage.getItem(key);

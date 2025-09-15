@@ -72,13 +72,12 @@ class NowPlayingMovies extends Component {
             <React.Fragment>
                 {/* filtrar */}
                 { !this.state.filter ?   
-                    <form onSubmit={(event)=> this.evitarSubmit(event)}>
-                        <label> Type to filter </label>
-                        <input type="text" onChange= {(event)=> this.controlarCambios(event)} value={this.state.valorFormulario}/>
+                    <form onSubmit={(event)=> this.evitarSubmit(event)} className="ContainerFiltrador">
+                        <input className="Filtrador" placeholder="Insertar Filtro" type="text" onChange= {(event)=> this.controlarCambios(event)} value={this.state.valorFormulario}/>
                     </form> 
                 : null}
 
-                {/* Seccion cartas de cada pelicula/serie */}
+                {/* Seccion cartas de cAda pelicula/serie */}
                 <section className="row cards" id="movies">
                         {!tieneBusqueda ? 
                         ((this.state.datos.length === 0) ? <Loading/> : filtroONo.map((card) => <SingleCardMovie key={card.id} data={card} pelicula={true}/>))  :          
@@ -87,7 +86,7 @@ class NowPlayingMovies extends Component {
 
                 {/* Cargar Mas */}
                 { !this.state.filter ? <button onClick={() => this.cargarMas()}> Cargar Más </button> : null}
-                
+
             </React.Fragment>
         )
     }

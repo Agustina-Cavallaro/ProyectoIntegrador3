@@ -73,9 +73,8 @@ class TopRatedSeries extends Component {
             <React.Fragment>
                 {/* filtrar */}
                 { !this.state.filter ?   
-                    <form onSubmit={(event)=> this.evitarSubmit(event)}>
-                        <label> Type to filter </label>
-                        <input type="text" onChange= {(event)=> this.controlarCambios(event)} value={this.state.valorFormulario}/>
+                    <form onSubmit={(event)=> this.evitarSubmit(event)} className="ContainerFiltrador">
+                        <input className="Filtrador" placeholder="Insertar Filtro" type="text" onChange= {(event)=> this.controlarCambios(event)} value={this.state.valorFormulario}/>
                     </form> 
                 : null}
 
