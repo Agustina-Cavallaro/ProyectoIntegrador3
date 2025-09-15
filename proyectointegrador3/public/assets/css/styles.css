@@ -1,4 +1,4 @@
-body {
+html, body {
     font-family: "Poppins", sans-serif;
   }
 nav {
@@ -18,11 +18,17 @@ nav {
 .nav a:hover{
     font-weight: bold;
 }
+.ContainerFiltrador{
+    text-align: center;
+}
 
+.Filtrador{
+    width: 50%;
+}
 
 /* Home */
 .categoriaHome{
-    background-color:  #222;
+    background-color:  black;
     color: whitesmoke;
     text-align: center;
     border-radius: 15cap;
