@@ -9,14 +9,14 @@ class Formulario extends Component {
   }
 
 
-  controlarForm = (e) => {
+  controlarForm(e) {
     e.preventDefault();
     this.props.history.push('/results/' + this.state.input);
-  };
+  }
 
-  controlarInput = (e) => {
+  controlarInput(e) {
     this.setState({ input: e.target.value });
-  };
+  }
 
   render() {
     return (
