@@ -35,7 +35,7 @@ class SingleCardMovie extends Component{
         return false;
       }
     
-      manejarFavorito = () => {
+      manejarFavorito () {
         const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
         let guardados = localStorage.getItem(key);
         let favoritos = guardados ? JSON.parse(guardados) : [];

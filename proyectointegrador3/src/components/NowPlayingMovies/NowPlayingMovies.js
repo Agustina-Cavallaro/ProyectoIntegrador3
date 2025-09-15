@@ -77,7 +77,7 @@ class NowPlayingMovies extends Component {
                     </form> 
                 : null}
 
-                {/* Seccion cartas de cAda pelicula/serie */}
+                {/* Seccion cartas de cada pelicula/serie */}
                 <section className="row cards" id="movies">
                         {!tieneBusqueda ? 
                         ((this.state.datos.length === 0) ? <Loading/> : filtroONo.map((card) => <SingleCardMovie key={card.id} data={card} pelicula={true}/>))  :          
