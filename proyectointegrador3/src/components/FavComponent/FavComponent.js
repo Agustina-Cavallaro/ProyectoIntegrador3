@@ -14,7 +14,7 @@ class FavComponent extends Component {
     this.cargarFavoritos();
   }
 
-  cargarFavoritos = () => {
+  cargarFavoritos  ()  {
     let movies = localStorage.getItem("peliculasFavoritas");
     let series = localStorage.getItem("seriesFavoritas");
 
@@ -27,28 +27,27 @@ class FavComponent extends Component {
   render() {
     return (
       <section className="favoritos-container">
-        <h1>Mis Favoritos</h1>
-
+  
  
-        <h2>Películas</h2>
+        <h2 class="categoriaHome">Películas Favoritas</h2>
         {this.state.peliculasFavoritas.length === 0 ? (
           <p>No tenes películas favoritas.</p>
         ) : (
           <div className="favoritos-grid">
             {this.state.peliculasFavoritas.map((movie) => (
-              <SingleCardMovie key={movie.id} data={movie} pelicula={true} actualizarLista={this.cargarFavoritos}  />
+              <SingleCardMovie key={movie.id} data={movie} pelicula={true} actualizarLista={()=> this.cargarFavoritos()}  />
             ))}
           </div>
         )}
 
    
-        <h2>Series</h2>
+        <h2 class="categoriaHome">Series Favoritas</h2>
         {this.state.seriesFavoritas.length === 0 ? (
           <p>No tenes series favoritas.</p>
         ) : (
           <div className="favoritos-grid">
             {this.state.seriesFavoritas.map((serie) => (
-              <SingleCardMovie key={serie.id} data={serie} pelicula={false} actualizarLista={this.cargarFavoritos} />
+              <SingleCardMovie key={serie.id} data={serie} pelicula={false} actualizarLista={()=>this.cargarFavoritos()} />
             ))}
           </div>
         )}
