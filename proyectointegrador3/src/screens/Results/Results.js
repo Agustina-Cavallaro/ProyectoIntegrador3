@@ -43,8 +43,8 @@ class Results extends Component {
               Resultados de: {this.state.busqueda}
             </h1>
             <section className="resultados-lista">
-              {pelis.map((elm, idx) => (
-                <SingleCardMovie data={elm} key={idx + elm.original_title} />
+              {pelis.map((dato, i) => (
+                <SingleCardMovie data={dato} key={i + dato.original_title} />
               ))}
             </section>
 
