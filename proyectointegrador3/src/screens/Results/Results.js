@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import SingleCardMovie from "../../components/SingleCardMovie/SingleCardMovie";
+import Loading from "../../components/Loading/Loading";
 
 class Results extends Component {
   constructor(props) {
@@ -13,9 +14,7 @@ class Results extends Component {
   }
 
   componentDidMount() {
-    // fetch(
-    //   `https://api.themoviedb.org/3/search/movie?query=${this.state.busqueda}&api_key=9ed45d655a81dcc3d8732fddd5bc0588`
-    // )
+
     fetch(
       `https://api.themoviedb.org/3/search/multi?query=${this.state.busqueda}&api_key=0e24f8864be45bfee7d05660d5fc8739`
     )
@@ -37,7 +36,7 @@ class Results extends Component {
         <Header />
 
         {pelis.length === 0 ? (
-          <h2>Cargando...</h2>
+          <Loading/>
         ) : (
           <div className="resultados-container">
             <h1 className="resultados-titulo">

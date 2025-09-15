@@ -14,23 +14,23 @@ function Home(){
         <React.Fragment>
             <Header/>
             <div className="container">
-                <h2 className="categoriaHome">Popular movies this week</h2>
+                <h2 className="categoriaHome">Películas Populares</h2>
                 <PopularMovies filter={true} />
                 <Link to="/popularMovies">Ver Todas</Link>
 
-                <h2 class="categoriaHome">Popular series this week</h2>
+                <h2 class="categoriaHome">Series Populares</h2>
                 <PopularSeries filter={true}/>
                 <Link to="/popularSeries">Ver Todas</Link> 
 
-                <h2 class="categoriaHome">Movies now playing</h2>
+                <h2 class="categoriaHome">Películas En Cartelera</h2>
                 <NowPlayingMovies filter={true}/>
                 <Link to="/nowplaying">Ver Todas</Link>
 
-                <h2 class="categoriaHome">Top Rated series</h2>
+                <h2 class="categoriaHome">Mejores Series</h2>
                 <TopRatedSeries filter={true}/>
                 <Link to="/topSeries">Ver Todas</Link> 
 
-                <h2 class="categoriaHome">Upcoming Movies</h2>
+                <h2 class="categoriaHome">Películas Próximamente</h2>
                 <UpcomingMovies filter={true}/>
                 <Link to="/upcoming">Ver Todas</Link>
             </div>

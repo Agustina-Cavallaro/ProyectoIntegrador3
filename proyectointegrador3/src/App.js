@@ -13,13 +13,13 @@ import UnaPeli from "./components/UnaPeli/UnaPeli";
 import UnaSerie from "./components/UnaSerie/UnaSerie";
 import NotFound from "./components/NotFound/NotFound";
 import Results from "./screens/Results/Results";
-
+import Favoritos from "./screens/Favoritos/Favoritos";
 
 function App() {
   return (
     <Switch>
       <Route path="/" exact= {true} component={Home}/>
-      {/* <Route path="/favoritos" component={Favoritos} />  FALTA PONERLO CUANDO HAGAMOS LA PAGINA DE FAVORITOSS */}
+      <Route path="/favoritos" component={Favoritos} /> 
       <Route path="/popularMovies" component={PopularMoviesSection} />
       <Route path="/popularSeries" component={PopularSeriesSection}/> 
       <Route path="/nowplaying" component={NowPlayingMoviesSection} />
