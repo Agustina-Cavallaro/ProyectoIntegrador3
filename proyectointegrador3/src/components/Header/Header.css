@@ -2,17 +2,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #222;   
+  background-color: black;   
   padding: 15px 30px;
+  padding-left: 0px;
 }
 
 .logo {
-  font-weight: 700;
-  color: lightgray;
+  margin-left: 0px;
 }
 /* --- Nav --- */
 .nav {
-  background-color: #222; 
+  background-color: black; 
 }
 
 .nav ul {

@@ -9,7 +9,8 @@ class SingleCardMovie extends Component{
             verMas: false,
             textoBoton: " Ver mas ",
             clase: "noMostrar",
-            pelicula: props.pelicula
+            pelicula: props.pelicula, 
+            esFavorito: this.estaEnFavoritos()
         }
     }
 
@@ -20,6 +21,44 @@ class SingleCardMovie extends Component{
             clase: this.state.textoBoton === " Ver mas " ? "" : "noMostrar"
         })
     }
+    estaEnFavoritos() {
+        const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
+        let guardados = localStorage.getItem(key);
+        if (guardados) {
+          let favoritos = JSON.parse(guardados);
+          for (let i = 0; i < favoritos.length; i++) {
+            if (favoritos[i].id === this.props.data.id) {
+              return true;
+            }
+          }
+        }
+        return false;
+      }
+    
+      // ✅ Agregar o quitar de favoritos SIN splice ni break
+      manejarFavorito = () => {
+        const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
+        let guardados = localStorage.getItem(key);
+        let favoritos = guardados ? JSON.parse(guardados) : [];
+    
+        let esta = false;
+        let nuevosFavoritos = [];
+    
+        for (let i = 0; i < favoritos.length; i++) {
+          if (favoritos[i].id === this.state.data.id) {
+            esta = true; // lo encontré, no lo agrego
+          } else {
+            nuevosFavoritos.push(favoritos[i]); // mantengo los otros
+          }
+        }
+    
+        if (!esta) {
+          nuevosFavoritos.push(this.state.data); // si no estaba, lo agrego
+        }
+    
+        localStorage.setItem(key, JSON.stringify(nuevosFavoritos));
+        this.setState({ esFavorito: !this.state.esFavorito });
+      };
 
     render(){
         return(
@@ -31,7 +70,7 @@ class SingleCardMovie extends Component{
                     <p className={"card-text " + this.state.clase}>{this.state.data.overview}</p>
                     <button onClick={() => this.boton()} className="botonesVer"> {this.state.textoBoton}</button>
                     <Link to={`/movie/id/${this.state.data.id}`} className="botonesVer"> Ver detalle </Link>
-                    <button className="botonesVer">🩶</button> {/* Aca le falta el on clic para hacerlo funcional*/}
+                    <button onClick={this.manejarFavorito} className="botonesVer"> {this.state.esFavorito  ? "Quitar de favoritos" : "Agregar a favoritos"} </button>
                 </div>
                 :
                 <div className="cardBody">
@@ -39,9 +78,15 @@ class SingleCardMovie extends Component{
                     <p className={"card-text " + this.state.clase}>{this.state.data.overview}</p>
                     <button onClick={() => this.boton()} className="botonesVer"> {this.state.textoBoton}</button>
                     <Link to={`/tv/id/${this.state.data.id}`} className="botonesVer"> Ver detalle </Link>
-                    <button className="botonesVer">🩶</button> {/* Aca le falta el on clic para hacerlo funcional*/}
+                    <button onClick={this.manejarFavorito} className="botonesVer">
+              {this.state.esFavorito
+                ? "Quitar de favoritos"
+                : "Agregar a favoritos"}
+            </button>
                 </div>
                 }
+
+                
             </article>
         )
     }
