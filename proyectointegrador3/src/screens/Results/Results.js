@@ -10,6 +10,7 @@ class Results extends Component {
     this.state = {
       busqueda: props.match.params.busqueda,
       resultados: [],
+      loading: true,
     };
   }
 
@@ -25,15 +26,49 @@ class Results extends Component {
         );
       })
       .catch((err) => console.log(err));
+
+      
   }
 
   render() {
     const pelis = this.state.resultados;
     console.log("props de resultados de busqueda es: ", this.props);
+    const resultados = this.state.resultados;
+    const busqueda = this.state.busqueda;
+
+    const peliculas = resultados.filter(elm => elm.media_type === "movie");
+    const series = resultados.filter(elm => elm.media_type === "tv");
 
     return (
       <React.Fragment>
         <Header />
+        
+        {peliculas.length > 0 ? (
+            <div className="resultado-seccion">
+              <h2> PELICULAS</h2>
+              <section>
+                {peliculas.map(elm => {
+                  return <SingleCardMovie key={elm.id} item={elm} />;
+                })}
+              </section>
+            </div>
+          ) : (
+            <p>No se encontraron películas</p>
+          )}
+
+          {series.length > 0 ? (
+            <div className="resultado-seccion">
+            <h2>SERIES</h2>
+              <section>
+                {series.map(elm => {
+                  return <SingleCardMovie key={ elm.id} item={elm} />;
+                })}
+              </section>
+            </div>
+          ) : (
+            <p>No se encontraron series</p>
+          )}
+
 
         {pelis.length === 0 ? (
           <Loading/>
@@ -43,9 +78,7 @@ class Results extends Component {
               Resultados de: {this.state.busqueda}
             </h1>
             <section className="resultados-lista">
-              {pelis.map((dato, i) => (
-                <SingleCardMovie data={dato} key={i + dato.original_title} />
-              ))}
+            {pelis.map((dato) => (<SingleCardMovie  data={dato} pelicula={dato.media_type === "movie"} key={dato.id}/>))}
             </section>
 
             <br />

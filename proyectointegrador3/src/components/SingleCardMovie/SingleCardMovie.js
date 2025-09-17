@@ -21,6 +21,7 @@ class SingleCardMovie extends Component{
             clase: this.state.textoBoton === " Ver mas " ? "" : "noMostrar"
         })
     }
+    
     estaEnFavoritos() {
         const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
         let guardados = localStorage.getItem(key);
@@ -57,13 +58,14 @@ class SingleCardMovie extends Component{
       
         localStorage.setItem(key, JSON.stringify(nuevosFavoritos));
       
-   
+  
         this.setState({ esFavorito: !this.state.esFavorito }, () => {
           if (this.props.actualizarLista) {
             this.props.actualizarLista();
           }
         });
       };
+      
       
 
     render(){
@@ -76,7 +78,7 @@ class SingleCardMovie extends Component{
                     <p className={"card-text " + this.state.clase}>{this.state.data.overview}</p>
                     <button onClick={() => this.boton()} className="botonesVer"> {this.state.textoBoton}</button>
                     <Link to={`/movie/id/${this.state.data.id}`} className="botonesVer"> Ver detalle </Link>
-                    <button onClick={this.manejarFavorito} className="botonesVer"> {this.state.esFavorito  ? "Quitar de favoritos" : "Agregar a favoritos"} </button>
+                    <button onClick={()=>this.manejarFavorito()} className="botonesVer"> {this.state.esFavorito  ? "Quitar de favoritos" : "Agregar a favoritos"} </button>
                 </div>
                 :
                 <div className="cardBody">
@@ -84,7 +86,7 @@ class SingleCardMovie extends Component{
                     <p className={"card-text " + this.state.clase}>{this.state.data.overview}</p>
                     <button onClick={() => this.boton()} className="botonesVer"> {this.state.textoBoton}</button>
                     <Link to={`/tv/id/${this.state.data.id}`} className="botonesVer"> Ver detalle </Link>
-                    <button onClick={this.manejarFavorito} className="botonesVer"> {this.state.esFavorito ? "Quitar de favoritos" : "Agregar a favoritos"} </button>
+                    <button onClick={()=>this.manejarFavorito()} className="botonesVer"> {this.state.esFavorito ? "Quitar de favoritos" : "Agregar a favoritos"} </button>
                 </div>
                 }
 
