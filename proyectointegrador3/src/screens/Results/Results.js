@@ -32,7 +32,7 @@ class Results extends Component {
 
   render() {
     console.log("props de resultados de busqueda es: ", this.props);
-    
+    console.log(this.state.resultados);
     const resultados = this.state.resultados;
     const busqueda = this.state.busqueda;
 
