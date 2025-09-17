@@ -31,60 +31,44 @@ class Results extends Component {
   }
 
   render() {
-    const pelis = this.state.resultados;
     console.log("props de resultados de busqueda es: ", this.props);
+    
     const resultados = this.state.resultados;
     const busqueda = this.state.busqueda;
 
-    const peliculas = resultados.filter(elm => elm.media_type === "movie");
-    const series = resultados.filter(elm => elm.media_type === "tv");
+    const peliculas = resultados.filter(res => res.media_type === "movie");
+    const series = resultados.filter(res => res.media_type === "tv");
 
     return (
       <React.Fragment>
         <Header />
-        
+
+        {/* resultados peliculas */}
         {peliculas.length > 0 ? (
-            <div className="resultado-seccion">
-              <h2> PELICULAS</h2>
-              <section>
-                {peliculas.map(elm => {
-                  return <SingleCardMovie key={elm.id} item={elm} />;
-                })}
-              </section>
-            </div>
-          ) : (
-            <p>No se encontraron películas</p>
-          )}
+        <div className="resultados-container">
+          <h1 className="resultados-titulo">
+            Resultados de peliculas: {busqueda}
+          </h1>
+          <section className="resultados-lista">
+            {peliculas.map((dato) => <SingleCardMovie data={dato} pelicula={true} key={dato.id}/>)}
+          </section>
+        </div>
+        ) : 
+        <p>No hay resultados para esa busqueda</p> }
 
-          {series.length > 0 ? (
-            <div className="resultado-seccion">
-            <h2>SERIES</h2>
-              <section>
-                {series.map(elm => {
-                  return <SingleCardMovie key={ elm.id} item={elm} />;
-                })}
-              </section>
-            </div>
-          ) : (
-            <p>No se encontraron series</p>
-          )}
-
-
-        {pelis.length === 0 ? (
-          <Loading/>
-        ) : (
+        {/* resultados series */}
+        {series.length > 0 ? (
           <div className="resultados-container">
             <h1 className="resultados-titulo">
-              Resultados de: {this.state.busqueda}
+              Resultados de series: {busqueda}
             </h1>
             <section className="resultados-lista">
-            {pelis.map((dato) => (<SingleCardMovie  data={dato} pelicula={dato.media_type === "movie"} key={dato.id}/>))}
+              {series.map((dato) => <SingleCardMovie data={dato} pelicula={false} key={dato.id}/>)}
             </section>
-
-            <br />
-            <Footer />
           </div>
-        )}
+        ) : 
+        <p>No hay resultados para esa busqueda</p> }
+        <Footer/>          
       </React.Fragment>
     );
   }
