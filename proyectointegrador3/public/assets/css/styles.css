@@ -180,6 +180,7 @@ nav {
 .resultados-lista{
     display:flex;
     flex-wrap: wrap;
+    gap: 10px
 
 }
 
@@ -192,6 +193,7 @@ nav {
 .favoritos-grid{
     display: flex;
     flex-wrap: wrap;
+    gap: 10px
     
 }
 

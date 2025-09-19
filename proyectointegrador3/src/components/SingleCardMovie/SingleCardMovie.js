@@ -27,11 +27,16 @@ class SingleCardMovie extends Component{
         let guardados = localStorage.getItem(key);
         if (guardados) {
           let favoritos = JSON.parse(guardados);
-          for (let i = 0; i < favoritos.length; i++) {
-            if (favoritos[i].id === this.props.data.id) {
-              return true;
+          let esta = false;
+    
+          favoritos.map((fav) => {
+            if (fav.id === this.props.data.id) {
+              esta = true;
             }
-          }
+            return null; // para que map no se queje
+          });
+    
+          return esta;
         }
         return false;
       }
@@ -44,14 +49,15 @@ class SingleCardMovie extends Component{
         let esta = false;
         let nuevosFavoritos = [];
       
-        for (let i = 0; i < favoritos.length; i++) {
-          if (favoritos[i].id === this.state.data.id) {
+        favoritos.map((fav) => {
+          if (fav.id === this.state.data.id) {
             esta = true;
           } else {
-            nuevosFavoritos.push(favoritos[i]);
+            nuevosFavoritos.push(fav);
           }
-        }
-      
+          return null;
+        });
+    
         if (!esta) {
           nuevosFavoritos.push(this.state.data);
         }

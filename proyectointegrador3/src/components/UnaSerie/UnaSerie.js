@@ -120,8 +120,9 @@ class UnaSerie extends Component {
   }
 
   componentDidMount(){
-    const { id } = this.props.match.params;
-   
+    // const { id } = this.props.match.params;
+    const id = this.props.match.params.id
+    
     fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=0e24f8864be45bfee7d05660d5fc8739&language=es-ES`)
       .then(res => res.json())
       .then(data => {

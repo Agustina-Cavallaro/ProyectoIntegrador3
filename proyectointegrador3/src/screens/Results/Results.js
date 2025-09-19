@@ -46,7 +46,7 @@ class Results extends Component {
         {/* resultados peliculas */}
         {peliculas.length > 0 ? (
         <div className="resultados-container">
-          <h1 className="resultados-titulo">
+          <h1 className="categoriaHome">
             Resultados de peliculas: {busqueda}
           </h1>
           <section className="resultados-lista">
@@ -59,7 +59,7 @@ class Results extends Component {
         {/* resultados series */}
         {series.length > 0 ? (
           <div className="resultados-container">
-            <h1 className="resultados-titulo">
+            <h1 className="categoriaHome">
               Resultados de series: {busqueda}
             </h1>
             <section className="resultados-lista">
