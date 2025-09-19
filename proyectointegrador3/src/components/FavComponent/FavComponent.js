@@ -5,20 +5,24 @@ class FavComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      //empiezo con listas vacias de las dos cosas 
       peliculasFavoritas: [],
       seriesFavoritas: []
     };
   }
 
   componentDidMount() {
+    //cargo lo que hay en local
     this.cargarFavoritos();
   }
 
   cargarFavoritos  ()  {
+    //leo desde local lo q hay 
     let movies = localStorage.getItem("peliculasFavoritas");
     let series = localStorage.getItem("seriesFavoritas");
 
     this.setState({
+      //si habia alfo en el local lo parse y sino lo dejo como lsia
       peliculasFavoritas: movies ? JSON.parse(movies) : [],
       seriesFavoritas: series ? JSON.parse(series) : []
     });
@@ -47,7 +51,7 @@ class FavComponent extends Component {
         ) : (
           <div className="favoritos-grid">
             {this.state.seriesFavoritas.map((serie) => (
-              <SingleCardMovie key={serie.id} data={serie} pelicula={false} actualizarLista={()=>this.cargarFavoritos()} />
+              <SingleCardMovie key={serie.id} data={serie} pelicula={false} actualizarLista={()=>this.cargarFavoritos()} /> //si se saca actualizo la lista
             ))}
           </div>
         )}

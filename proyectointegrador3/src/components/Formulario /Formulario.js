@@ -5,15 +5,15 @@ import { withRouter } from "react-router-dom";
 class Formulario extends Component {
   constructor(props) {
     super(props);
-    this.state = {input: "" }
+    this.state = {input: "" } //estado incial el input vacio 
   }
 
-  controlarForm (e){
+  controlarForm (e){ ///se ejecuta cuando se envia el form
     e.preventDefault()
-    this.props.history.push('/results/' + this.state.input)
+    this.props.history.push('/results/' + this.state.input) //usa react para dirigir a la ruta
   }
 
-  controlarInput (e){
+  controlarInput (e){ //cuando el usuario escibe
     this.setState({ input: e.target.value });
   }
 
