@@ -10,7 +10,7 @@ class SingleCardMovie extends Component{
             textoBoton: " Ver mas ",
             clase: "noMostrar",
             pelicula: props.pelicula, 
-            esFavorito: this.estaEnFavoritos()
+            esFavorito: this.estaEnFavoritos() //para q caclule si esta en favs o no
         }
     }
 
@@ -24,13 +24,13 @@ class SingleCardMovie extends Component{
     
     estaEnFavoritos() {
         const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
-        let guardados = localStorage.getItem(key);
+        let guardados = localStorage.getItem(key); //agarra del local 
         if (guardados) {
           let favoritos = JSON.parse(guardados);
           let esta = false;
     
-          favoritos.map((fav) => {
-            if (fav.id === this.props.data.id) {
+          favoritos.map((fav) => { //recorre todos los favs 
+            if (fav.id === this.props.data.id) { //si encuentra uno con el mismo id engonces dice q ya etsa 
               esta = true;
             }
             return null; // para que map no se queje
@@ -44,13 +44,13 @@ class SingleCardMovie extends Component{
       manejarFavorito () {
         const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
         let guardados = localStorage.getItem(key);
-        let favoritos = guardados ? JSON.parse(guardados) : [];
+        let favoritos = guardados ? JSON.parse(guardados) : []; //si hay alfo lo parsea sino vacio 
       
         let esta = false;
-        let nuevosFavoritos = [];
+        let nuevosFavoritos = []; //nueva lista 
       
-        favoritos.map((fav) => {
-          if (fav.id === this.state.data.id) {
+        favoritos.map((fav) => { //recorre gavs de nuevo 
+          if (fav.id === this.state.data.id) { //si el id coincide con el que ya estaba true, sino pushea y lo agrega 
             esta = true;
           } else {
             nuevosFavoritos.push(fav);
@@ -59,14 +59,14 @@ class SingleCardMovie extends Component{
         });
     
         if (!esta) {
-          nuevosFavoritos.push(this.state.data);
+          nuevosFavoritos.push(this.state.data); //lo agrego a la lista 
         }
       
         localStorage.setItem(key, JSON.stringify(nuevosFavoritos));
       
   
-        this.setState({ esFavorito: !this.state.esFavorito }, () => {
-          if (this.props.actualizarLista) {
+        this.setState({ esFavorito: !this.state.esFavorito }, () => { //actualizo para q cambie el boron 
+          if (this.props.actualizarLista) { // si el parde paso la funcion actualizar lista la ejecuto
             this.props.actualizarLista();
           }
         });
