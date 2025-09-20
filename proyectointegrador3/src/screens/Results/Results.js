@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import SingleCardMovie from "../../components/SingleCardMovie/SingleCardMovie";
-import Loading from "../../components/Loading/Loading";
 
 class Results extends Component {
   constructor(props) {
@@ -32,7 +31,7 @@ class Results extends Component {
 
   render() {
     console.log("props de resultados de busqueda es: ", this.props);
-    console.log(this.state.resultados);
+    
     const resultados = this.state.resultados;
     const busqueda = this.state.busqueda;
 

@@ -27,8 +27,6 @@ class FavComponent extends Component {
   render() {
     return (
       <section className="favoritos-container">
-  
- 
         <h2 class="categoriaHome">Películas Favoritas</h2>
         {this.state.peliculasFavoritas.length === 0 ? (
           <p>No tenes películas favoritas.</p>
