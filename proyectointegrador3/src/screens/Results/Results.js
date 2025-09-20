@@ -7,9 +7,9 @@ class Results extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      busqueda: props.match.params.busqueda,
-      resultados: [],
-      loading: true,
+      busqueda: props.match.params.busqueda, //busca la palabra que  viene de la url osea que busco el usurauoo 
+      resultados: [], ///guardamos lo wue devuelve la api
+      loading: true, 
     };
   }
 
@@ -20,9 +20,8 @@ class Results extends Component {
     )
       .then((res) => res.json())
       .then((data) => {
-        this.setState({ resultados: data.results }, () =>
-          console.log("los resultados son:", this.state.resultados)
-        );
+       this.setState({ resultados: data.results, loading: false });
+
       })
       .catch((err) => console.log(err));
 
@@ -35,6 +34,7 @@ class Results extends Component {
     const resultados = this.state.resultados;
     const busqueda = this.state.busqueda;
 
+    //separo los resultados en pleiulas y series
     const peliculas = resultados.filter(res => res.media_type === "movie");
     const series = resultados.filter(res => res.media_type === "tv");
 
@@ -45,7 +45,7 @@ class Results extends Component {
         {/* resultados peliculas */}
         {peliculas.length > 0 ? (
         <div className="resultados-container">
-          <h1 className="resultados-titulo">
+          <h1 className="categoriaHome">
             Resultados de peliculas: {busqueda}
           </h1>
           <section className="resultados-lista">
@@ -53,12 +53,12 @@ class Results extends Component {
           </section>
         </div>
         ) : 
-        <p>No hay resultados para esa busqueda</p> }
+        <p>No hay resultados de pelicula para esa busqueda</p> }
 
         {/* resultados series */}
         {series.length > 0 ? (
           <div className="resultados-container">
-            <h1 className="resultados-titulo">
+            <h1 className="categoriaHome">
               Resultados de series: {busqueda}
             </h1>
             <section className="resultados-lista">
@@ -66,7 +66,7 @@ class Results extends Component {
             </section>
           </div>
         ) : 
-        <p>No hay resultados para esa busqueda</p> }
+        <p>No hay resultados de serie para esa busqueda</p> }
         <Footer/>          
       </React.Fragment>
     );

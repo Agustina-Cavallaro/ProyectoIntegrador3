@@ -1,198 +1,78 @@
-// import React, { Component } from "react";
-// import Header from "../Header/Header";
-// import Footer from "../Footer/Footer";
-
-// class UnaPeli extends Component {
-//   constructor(props){
-//     super(props);
-//     this.state = { 
-//       data: null, 
-//       // peliculasFavoritas: [],
-//       // seriesFavoritas: []
-//     };
-//   }
-
-//   componentDidMount(){
-//     const { id } = this.props.match.params;
-   
-//     fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=0e24f8864be45bfee7d05660d5fc8739&language=es-ES`)
-//       .then(res => res.json())
-//       .then(data => this.setState({ data, loading: false }))
-//       .catch(error => this.setState({ error, loading: false }));
-//   }
-
-//   estaEnFavoritos() {
-//     const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
-//     let guardados = localStorage.getItem(key);
-//     if (guardados) {
-//       let favoritos = JSON.parse(guardados);
-//       for (let i = 0; i < favoritos.length; i++) {
-//         if (favoritos[i].id === this.props.data.id) {
-//           return true;
-//         }
-//       }
-//     }
-//     return false;
-//   }
-//     manejarFavorito () {
-//       const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
-//       let guardados = localStorage.getItem(key);
-//       let favoritos = guardados ? JSON.parse(guardados) : [];
-    
-//       let esta = false;
-//       let nuevosFavoritos = [];
-    
-//       for (let i = 0; i < favoritos.length; i++) {
-//         if (favoritos[i].id === this.state.data.id) {
-//           esta = true;
-//         } else {
-//           nuevosFavoritos.push(favoritos[i]);
-//         }
-//       }
-    
-//       if (!esta) {
-//         nuevosFavoritos.push(this.state.data);
-//       }
-    
-//       localStorage.setItem(key, JSON.stringify(nuevosFavoritos));
-    
-
-//       this.setState({ esFavorito: !this.state.esFavorito }, () => {
-//         if (this.props.actualizarLista) {
-//           this.props.actualizarLista();
-//         }
-//       });
-//     };
-    
-
-//   render(){
-//     const { data } = this.state;
-//     if (!data) return null;
-
-//     let generos = [];
-//     if (data.genres) {
-//       for (let i = 0; i < data.genres.length; i++) {
-//         generos.push(data.genres[i].name);
-//       }
-//     }
-
-//     return (
-//       <React.Fragment>
-//       <Header/>
-//       <article className="character-card detail">
-//         <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt={data.original_title} />
-//         <h2>{data.original_title}</h2>
-//         <p><strong>Calificación:</strong> {data.vote_average}</p>
-//         <p><strong>Fecha de estreno:</strong> {data.release_date}</p>
-//         <p><strong>Géneros:</strong> 
-//           {generos.map((gene, i) => (
-//             <p key={i}> {gene} </p>
-//           ))}
-//         </p>
-//         <p><strong>Duración:</strong> {data.runtime} min</p>
-//         <p><strong>Sinopsis:</strong> {data.overview}</p>
-//         <button onClick={()=>this.manejarFavorito()} className="botonesVer"> {this.state.esFavorito  ? "Quitar de favoritos" : "Agregar a favoritos"} </button>
-//       </article>
-//       <Footer/>
-//       </React.Fragment>
-//     );
-//   }
-// }
-
-// export default UnaPeli;
-
 import React, { Component } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
 class UnaPeli extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = { 
-      data: null, 
-      esFavorito: false
+    this.state = {
+      data: null, //guardo los datos de la pe q vienen de la api
+      esFavorito: false //para q detecte si esta en fsv ono
     };
   }
 
-  componentDidMount(){
-    const { id } = this.props.match.params;
-   
+  componentDidMount() {
+    const id = this.props.match.params.id; //de la url
+
     fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=0e24f8864be45bfee7d05660d5fc8739&language=es-ES`)
       .then(res => res.json())
       .then(data => {
-        this.setState({ 
-          data,
-          esFavorito: this.estaEnFavoritos(data)
+        this.setState({
+          data, //toda la indo de la serie 
+          esFavorito: this.estaEnFavoritos(data) //t/f si esta en favs o no
         });
       })
       .catch(error => this.setState({ error }));
   }
 
-  estaEnFavoritos(data) {
+  estaEnFavoritos  (data)  { //se dija si ya esta la peli en favs
     const key = "peliculasFavoritas";
-    const guardados = localStorage.getItem(key);
-    if (guardados) {
-      const favoritos = JSON.parse(guardados);
-      for (let i = 0; i < favoritos.length; i++) {
-        if (favoritos[i].id === data.id) {
-          return true;
-        }
-      }
-    }
-    return false;
+    const guardados = localStorage.getItem(key); //traogo lo q hay guardado
+    if (!guardados) return false; // si no haynada
+
+    const favoritos = JSON.parse(guardados);
+    const encontrados = favoritos.filter(fav => fav.id === data.id); //busco si ya esta
+    return encontrados.length > 0; //si coincide el id, ya esta en favs
   }
 
-  manejarFavorito() {
+  manejarFavorito  ()  { //agrega o saca de favs
     const key = "peliculasFavoritas";
     const guardados = localStorage.getItem(key);
-    const favoritos = guardados ? JSON.parse(guardados) : [];
+    const favoritos = guardados ? JSON.parse(guardados) : []; //si no hay nada hacee el array vacio
 
-    let nuevosFavoritos = [];
-    let esta = false;
-
-    for (let i = 0; i < favoritos.length; i++) {
-      if (favoritos[i].id === this.state.data.id) {
-        esta = true;
-      } else {
-        nuevosFavoritos.push(favoritos[i]);
-      }
-    }
+    const nuevosFavoritos = favoritos.filter(fav => fav.id !== this.state.data.id); ///filtro los q no coiniden con la acural, osea q hagi una lista sin lapeli q ya esta y si apatrece de nuveo la saco asi no se repite
+    const esta = nuevosFavoritos.length !== favoritos.length;
 
     if (!esta) {
-      nuevosFavoritos.push(this.state.data);
+      nuevosFavoritos.push(this.state.data); //si no estaba la agrego
     }
 
     localStorage.setItem(key, JSON.stringify(nuevosFavoritos));
-    this.setState({ esFavorito: !esta });
+    this.setState({ esFavorito: !esta }); //para q cambie el boron 
   }
 
-  render(){
-    const { data } = this.state;
+  render() {
+    const data = this.state.data;
     if (!data) return null;
 
-    let generos = [];
-    if (data.genres) {
-      for (let i = 0; i < data.genres.length; i++) {
-        generos.push(data.genres[i].name);
-      }
-    }
+  let generos = data.genres.map(g => g.name);
 
     return (
       <React.Fragment>
-        <Header/>
+        <Header />
         <article className="character-card detail">
           <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt={data.original_title} />
           <h2>{data.original_title}</h2>
           <p><strong>Calificación:</strong> {data.vote_average}</p>
           <p><strong>Fecha de estreno:</strong> {data.release_date}</p>
-          <p><strong>Géneros:</strong> {generos.join(', ')}</p>
+          <p><strong>Géneros:</strong> {generos + "  "}</p>
           <p><strong>Duración:</strong> {data.runtime} min</p>
           <p><strong>Sinopsis:</strong> {data.overview}</p>
           <button onClick={()=>this.manejarFavorito()} className="botonesVer">
             {this.state.esFavorito ? "Quitar de favoritos" : "Agregar a favoritos"}
           </button>
         </article>
-        <Footer/>
+        <Footer />
       </React.Fragment>
     );
   }
