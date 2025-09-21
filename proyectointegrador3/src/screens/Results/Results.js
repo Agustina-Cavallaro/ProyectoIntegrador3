@@ -4,10 +4,10 @@ import Footer from "../../components/Footer/Footer";
 import SingleCardMovie from "../../components/SingleCardMovie/SingleCardMovie";
 
 class Results extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      busqueda: props.match.params.busqueda, //busca la palabra que  viene de la url osea que busco el usurauoo 
+  constructor(props) { //las props van a venir de la url 
+    super(props); //llama alc omponnet para poder usar this.props
+    this.state = { 
+      busqueda: props.match.params.busqueda, //trae lo q viene de la url
       resultados: [], ///guardamos lo wue devuelve la api
       loading: true, 
     };
@@ -18,10 +18,10 @@ class Results extends Component {
     fetch(
       `https://api.themoviedb.org/3/search/multi?query=${this.state.busqueda}&api_key=0e24f8864be45bfee7d05660d5fc8739`
     )
-      .then((res) => res.json())
-      .then((data) => {
+      .then((res) => res.json()) //como la api devuelve una promes con res.json lo transforomo en un obj
+      .then((data) => {//cuando ya tengo los datos
        this.setState({ resultados: data.results, loading: false });
-
+                      //res guarda el array de res que dio la  api
       })
       .catch((err) => console.log(err));
 
@@ -31,10 +31,10 @@ class Results extends Component {
   render() {
     console.log("props de resultados de busqueda es: ", this.props);
     
-    const resultados = this.state.resultados;
-    const busqueda = this.state.busqueda;
+    const resultados = this.state.resultados; //lo guatdo en una constq lo llene antes
+    const busqueda = this.state.busqueda;  //en const ko q busco la persona 
 
-    //separo los resultados en pleiulas y series
+    //separo los resultados en pleiulas y series res cada elemnt del array
     const peliculas = resultados.filter(res => res.media_type === "movie");
     const series = resultados.filter(res => res.media_type === "tv");
 
@@ -49,6 +49,7 @@ class Results extends Component {
             Resultados de peliculas: {busqueda}
           </h1>
           <section className="resultados-lista">
+            {/* recorre el map d pelis y x cada una crea un scm   info de la peli dato */}
             {peliculas.map((dato) => <SingleCardMovie data={dato} pelicula={true} key={dato.id}/>)}
           </section>
         </div>
