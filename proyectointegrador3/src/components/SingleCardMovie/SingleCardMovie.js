@@ -22,24 +22,19 @@ class SingleCardMovie extends Component{
         })
     }
     
-    estaEnFavoritos() {
-        const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
-        let guardados = localStorage.getItem(key); //agarra del local 
+      estaEnFavoritos() {
+        const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas"; ///elije si es pelo o serie 
+        let guardados = localStorage.getItem(key); ///busca q hay en local 
+        let esta = false;  //empeixa en false
+
         if (guardados) {
           let favoritos = JSON.parse(guardados);
-          let esta = false;
-    
-          favoritos.map((fav) => { //recorre todos los favs 
-            if (fav.id === this.props.data.id) { //si encuentra uno con el mismo id engonces dice q ya etsa 
-              esta = true;
-            }
-            return null; // para que map no se queje
-          });
-    
-          return esta;
+          favoritos.map(fav => fav.id === this.props.data.id ? (esta = true) : null); ///si es el mismo id es true sino no 
         }
-        return false;
+
+        return esta;
       }
+
     
       manejarFavorito () {
         const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
@@ -59,11 +54,10 @@ class SingleCardMovie extends Component{
         localStorage.setItem(key, JSON.stringify(nuevosFavoritos));
       
   
-        this.setState({ esFavorito: !this.state.esFavorito }, () => { //actualizo para q cambie el boron 
-          if (this.props.actualizarLista) { // si el parde paso la funcion actualizar lista la ejecuto
-            this.props.actualizarLista();
-          }
-        });
+          this.setState(
+          { esFavorito: !this.state.esFavorito }, // actualiza estado
+          () => (this.props.actualizarLista ? this.props.actualizarLista() : null) // ejecuta solo si existe
+      );
       };
       
       
