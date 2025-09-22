@@ -11,11 +11,6 @@ class FavComponent extends Component {
     };
   }
 
-  componentDidMount() {
-    //cargo lo que hay en local
-    this.cargarFavoritos();
-  }
-
   cargarFavoritos  ()  {
     //leo desde local lo q hay 
     let movies = localStorage.getItem("peliculasFavoritas");
