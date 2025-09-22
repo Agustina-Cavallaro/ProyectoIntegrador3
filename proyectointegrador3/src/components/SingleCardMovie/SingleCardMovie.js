@@ -26,7 +26,7 @@ class SingleCardMovie extends Component{
         const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas"; ///elije si es pelo o serie 
         let guardados = localStorage.getItem(key); ///busca q hay en local 
         let esta = false;  //empeixa en false
-
+        
         if (guardados) {
           let favoritos = JSON.parse(guardados);
           favoritos.map(fav => fav.id === this.props.data.id ? (esta = true) : null); ///si es el mismo id es true sino no 

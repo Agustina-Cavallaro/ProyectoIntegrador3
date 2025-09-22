@@ -22,9 +22,6 @@ class TopRatedSeries extends Component {
             }
         )}
 
-    filtrarElementos (busqueda, datos) { 
-        return datos.filter(objetoElemento=> objetoElemento.name.toLowerCase().includes(busqueda.toLowerCase()))
-    }
 
     cargarMas(){
         const options = {
@@ -44,6 +41,10 @@ class TopRatedSeries extends Component {
             })
         })
         .catch((error) => console.log(error))
+    }
+
+    filtrarElementos (busqueda, datos) { 
+        return datos.filter(objetoElemento=> objetoElemento.name.toLowerCase().includes(busqueda.toLowerCase()))
     }
 
     componentDidMount(){

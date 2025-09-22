@@ -22,10 +22,6 @@ class NowPlayingMovies extends Component {
             }
         )}
 
-    filtrarElementos (busqueda, datos) { 
-        return datos.filter(objetoElemento=> objetoElemento.title.toLowerCase().includes(busqueda.toLowerCase()))
-    }
-
     cargarMas(){
         const options = {
             method: 'GET',
@@ -44,6 +40,10 @@ class NowPlayingMovies extends Component {
             })
         })
         .catch((error) => console.log(error))
+    }
+
+    filtrarElementos (busqueda, datos) { 
+        return datos.filter(objetoElemento=> objetoElemento.title.toLowerCase().includes(busqueda.toLowerCase()))
     }
 
     componentDidMount(){
