@@ -61,8 +61,8 @@ class Results extends Component {
              <Loading/>
            ) : (
           <div className="resultado-seccion">
-               <h2>{tipo === "movie" ? "PELÍCULAS" : "SERIES"}</h2>
-               <section>
+               <h2 className="categoriaHome">{tipo === "movie" ? "PELÍCULAS" : "SERIES"}</h2>
+               <section className="resultados"> 
                {resultados.map(item => (
                 <SingleCardMovie key={item.id} data={item} pelicula={tipo === "movie"}  />
                  ))}

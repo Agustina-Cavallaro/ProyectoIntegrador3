@@ -37,20 +37,27 @@ class Formulario extends Component {
           onChange={(e) => this.controlarInput(e)} ////cuando la persona escirbe algo llama a ci q actualiza lo q hay en e.target.value
           className="buscador-input"
         />
+
+          <div className="buscador-opciones">
+            <div className="ff">
           <input type="radio"
           value="tv"
           name="tipo"  
           onChange={(e) => this.controlarTipo(e)}
         />
+        
         <label className ="label">Series</label><br />
+          </div>
 
+          <div className="ff">
         <input type="radio"
           value="movie"
           name="tipo"  
           onChange={(e) => this.controlarTipo(e)}
         />
+        </div>
         <label className ="label">Películas</label><br />
-
+        </div>
 
         <button type="submit" className="buscador-boton">Buscar</button>
       </form>
