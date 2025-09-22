@@ -36,6 +36,7 @@ class UnaPeli extends Component {
     return encontrados.length > 0; //si coincide el id, ya esta en favs
   }
 
+
   manejarFavorito  ()  { //agrega o saca de favs
     const key = "peliculasFavoritas";
     const guardados = localStorage.getItem(key);
@@ -64,7 +65,7 @@ class UnaPeli extends Component {
           <h2>{data.original_title}</h2>
           <p><strong>Calificación:</strong> {data.vote_average}</p>
           <p><strong>Fecha de estreno:</strong> {data.release_date}</p>
-          {data.genres.map(g => <p> Generos: {g.name + "  " }</p>)}
+         <p> Generos:{data.genres.map(g => <p> {g.name + "  " }</p>)}</p>
           <p><strong>Duración:</strong> {data.runtime} min</p>
           <p><strong>Sinopsis:</strong> {data.overview}</p>
           <button onClick={()=>this.manejarFavorito()} className="botonesVer">

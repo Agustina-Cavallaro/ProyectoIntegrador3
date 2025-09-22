@@ -29,7 +29,9 @@ function App() {
 
       <Route path="/movie/id/:id" component={UnaPeli} />
       <Route path="/tv/id/:id" component={UnaSerie} />
-      <Route path="/results/:busqueda" component={Results}/> 
+      <Route path="/results/:tipo/:busqueda" component={Results} />
+      
+
       <Route path="" component={NotFound}/>
     </Switch>  
   );
