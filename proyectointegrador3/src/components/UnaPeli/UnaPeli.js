@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import Loading from "../Loading/Loading";
 
 class UnaPeli extends Component {
   constructor(props) {
@@ -53,25 +54,26 @@ class UnaPeli extends Component {
 
   render() {
     const data = this.state.data;
-    if (!data) return null;
-
-  let generos = data.genres.map(g => g.name);
 
     return (
       <React.Fragment>
         <Header />
+        {data != null ?         
         <article className="character-card detail">
           <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt={data.original_title} />
           <h2>{data.original_title}</h2>
           <p><strong>Calificación:</strong> {data.vote_average}</p>
           <p><strong>Fecha de estreno:</strong> {data.release_date}</p>
-          <p><strong>Géneros:</strong> {generos + "  "}</p>
+          {data.genres.map(g => <p> Generos: {g.name + "  " }</p>)}
           <p><strong>Duración:</strong> {data.runtime} min</p>
           <p><strong>Sinopsis:</strong> {data.overview}</p>
           <button onClick={()=>this.manejarFavorito()} className="botonesVer">
             {this.state.esFavorito ? "Quitar de favoritos" : "Agregar a favoritos"}
           </button>
         </article>
+      : <Loading/>  
+      }
+
         <Footer />
       </React.Fragment>
     );
