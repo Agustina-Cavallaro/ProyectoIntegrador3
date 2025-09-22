@@ -67,7 +67,6 @@ class SingleCardMovie extends Component{
       };
       
       
-
     render(){
         return(
             <article className="single-card-movie">
