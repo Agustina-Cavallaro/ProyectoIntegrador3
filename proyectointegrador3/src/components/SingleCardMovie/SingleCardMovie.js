@@ -49,14 +49,8 @@ class SingleCardMovie extends Component{
         let esta = false;
         let nuevosFavoritos = []; //nueva lista 
       
-        favoritos.map((fav) => { //recorre gavs de nuevo 
-          if (fav.id === this.state.data.id) { //si el id coincide con el que ya estaba true, sino pushea y lo agrega 
-            esta = true;
-          } else {
-            nuevosFavoritos.push(fav);
-          }
-          return null;
-        });
+       favoritos.map(fav =>  fav.id === this.state.data.id  ? (esta = true) : nuevosFavoritos.push(fav));
+
     
         if (!esta) {
           nuevosFavoritos.push(this.state.data); //lo agrego a la lista 
