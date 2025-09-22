@@ -55,7 +55,7 @@ class UnaPeli extends Component {
     const data = this.state.data;
     if (!data) return null;
 
-  let generos = data.genres.map(g => g.name);
+     let generos = data.genres.map(g => g.name);
 
     return (
       <React.Fragment>
