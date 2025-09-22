@@ -22,9 +22,6 @@ class PopularMovies extends Component {
             }
         )}
 
-    filtrarElementos (busqueda, datos) { 
-        return datos.filter(objetoElemento=> objetoElemento.title.toLowerCase().includes(busqueda.toLowerCase()))
-    }
 
     cargarMas(){
         const options = {
@@ -46,6 +43,9 @@ class PopularMovies extends Component {
         .catch((error) => console.log(error))
     }
 
+    filtrarElementos (busqueda, datos) { 
+        return datos.filter(objetoElemento=> objetoElemento.title.toLowerCase().includes(busqueda.toLowerCase()))
+    }
     componentDidMount(){
         // el fetch te lo da la API asi para js
         const options = {
