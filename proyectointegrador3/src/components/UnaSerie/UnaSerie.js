@@ -65,7 +65,7 @@ class UnaSerie extends Component {
           <h2>{data.name}</h2>
           <p><strong>Calificación:</strong> {data.vote_average}</p>
           <p><strong>Fecha de estreno:</strong> {data.first_air_date}</p>
-          {data.genres.map(g => <p> Generos: {g.name + "  " }</p>)}
+          <p> Generos:{data.genres.map(g => <p> {g.name + "  " }</p>)}</p>
           <p><strong>Sinopsis:</strong> {data.overview}</p>
           {/* cuando haga click que ejecite esa funcion */}
           <button onClick={()=>this.manejarFavorito()} className="botonesVer"> 

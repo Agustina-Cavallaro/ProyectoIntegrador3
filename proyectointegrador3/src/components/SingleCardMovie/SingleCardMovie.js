@@ -55,8 +55,9 @@ class SingleCardMovie extends Component{
       
   
           this.setState(
-          { esFavorito: !this.state.esFavorito }, // actualiza estado
-          () => (this.props.actualizarLista ? this.props.actualizarLista() : null) // ejecuta solo si existe
+          { esFavorito: !this.state.esFavorito }, // actualiza estado --> cambia de valor el es fav 
+          () => (this.props.actualizarLista ? this.props.actualizarLista() : null) // ejecuta solo si existe lo de actualixzr lista
+          //sin argumentos xq quiero q se haga dsp de actualizsr lo de favs
       );
       };
       
