@@ -26,6 +26,64 @@ nav {
     width: 50%;
 }
 
+.buscador-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  max-width: 900px;   /* que no quede tan ancho */
+  gap: 10px;
+}
+
+.buscador-input {
+  flex: 1; 
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  width: 10%;
+}
+
+.buscador-opciones {
+  margin-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  color: white;
+  margin-left: 10px;
+}
+
+.buscador-boton {
+  background-color: #90ee90;
+  padding: 10px 18px;
+  font-size: 16px;
+  
+}
+
+.label{
+  color:white;
+  font-size: small;
+  margin-bottom: 0%;
+  
+}
+
+.ff{
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+  margin-bottom: 0%;
+  
+}
+
+.resultados{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  
+}
+
+
+
 /* Home */
 .categoriaHome{
     background-color:  black;
