@@ -6,10 +6,10 @@ import SingleCardMovie from "../../components/SingleCardMovie/SingleCardMovie";
 import Loading from "../../components/Loading/Loading";
 
 class Results extends Component {
-  constructor(props) { //las props van a venir de la url 
-    super(props); //llama alc omponnet para poder usar this.props
-    this.state = { 
-      busqueda: props.match.params.busqueda, //trae lo q viene de la url
+  constructor(props) {
+    super(props);
+    this.state = {
+      busqueda: props.match.params.busqueda, //busca la palabra que  viene de la url osea que busco el usurauoo 
       resultados: [], ///guardamos lo wue devuelve la api
       tipo: this.props.match.params.tipo, 
       loading: true, 
@@ -35,7 +35,7 @@ class Results extends Component {
       .then((res) => res.json()) //como la api devuelve una promes con res.json lo transforomo en un obj
       .then((data) => {//cuando ya tengo los datos
        this.setState({ resultados: data.results, loading: false });
-                      //res guarda el array de res que dio la  api
+
       })
       .catch((err) => console.log(err));
 
