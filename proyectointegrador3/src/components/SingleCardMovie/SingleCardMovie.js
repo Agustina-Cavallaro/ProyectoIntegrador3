@@ -22,7 +22,7 @@ class SingleCardMovie extends Component{
         })
     }
     
-      estaEnFavoritos() {
+      estaEnFavoritos() { ///se fija si la pelo o serie esta o no en favs 
         const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas"; ///elije si es pelo o serie 
         let guardados = localStorage.getItem(key); ///busca q hay en local 
         let esta = false;  //empeixa en false
@@ -36,7 +36,7 @@ class SingleCardMovie extends Component{
       }
 
     
-      manejarFavorito () {
+      manejarFavorito () { ///modofica la lista agregando o dejanod igual
         const key = this.props.pelicula ? "peliculasFavoritas" : "seriesFavoritas";
         let guardados = localStorage.getItem(key);
         let favoritos = guardados ? JSON.parse(guardados) : []; //si hay alfo lo parsea sino vacio 

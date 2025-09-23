@@ -11,7 +11,7 @@ class FavComponent extends Component {
     };
   }
 
-  cargarFavoritos  ()  {
+  cargarFavoritos  ()  { ////si se agrego a algo lo buca en el local y lo
     //leo desde local lo q hay 
     let movies = localStorage.getItem("peliculasFavoritas");
     let series = localStorage.getItem("seriesFavoritas");
