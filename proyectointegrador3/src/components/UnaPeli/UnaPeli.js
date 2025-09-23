@@ -26,6 +26,7 @@ class UnaPeli extends Component {
       .catch(error => this.setState({ error }));
   }
 
+  
   estaEnFavoritos  (data)  { //se dija si ya esta la peli en favs
     const key = "peliculasFavoritas";
     const guardados = localStorage.getItem(key); //traogo lo q hay guardado
@@ -33,7 +34,12 @@ class UnaPeli extends Component {
 
     const favoritos = JSON.parse(guardados);
     const encontrados = favoritos.filter(fav => fav.id === data.id); //busco si ya esta
-    return encontrados.length > 0; //si coincide el id, ya esta en favs
+      if (encontrados.length > 0) { /// qye si esta o no ya en favs y eso modifica el boton en detalle de agregar o quir
+      return true;
+    } else {
+      return false;
+    }
+
   }
 
 
