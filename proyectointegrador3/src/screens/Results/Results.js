@@ -42,7 +42,6 @@ class Results extends Component {
 
       
   }
-
   render() {
     console.log("props de resultados de busqueda es: ", this.props);
     

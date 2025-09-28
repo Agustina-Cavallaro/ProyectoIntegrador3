@@ -30,11 +30,11 @@ class UnaSerie extends Component {
   estaEnFavoritos  (data)  {
     const key = "seriesFavoritas";
     const guardados = localStorage.getItem(key); //veo lo guarado
-    if (!guardados) return false; //si no hay nada flase xq no esta
+    if (!guardados) return false; //si no hay nada flase xq no esta para q no parsee so no hay
 
     const favoritos = JSON.parse(guardados);
-    const encontrados = favoritos.filter(fav => fav.id === data.id); //filtro x id
-       if (encontrados.length > 0) { /// qye si esta o no ya en favs y eso modifica el boton en detalle de agregar o quir
+    const encontrados = favoritos.filter(fav => fav.id === data.id); //filtro x id busco si ya esta, recorro los favs y me fijo si esta el mismo id que la peli actual
+       if (encontrados.length > 0) { ///si econtrados mayor a 0 es xq la serie ya estaba 
       return true;
     } else {
       return false;
@@ -42,11 +42,14 @@ class UnaSerie extends Component {
   }
 
   manejarFavorito  ()  { //agrega o saca la serie de favoriso 
-    const key = "seriesFavoritas";
+    const key = "seriesFavoritas"; //la key q viene de scm
     const guardados = localStorage.getItem(key);
-    const favoritos = guardados ? JSON.parse(guardados) : [];
+    const favoritos = guardados ? JSON.parse(guardados) : []; //si no hay nada hacee el array vacio
 
+     //si ya estaba la swrie en favoritos la borro xq sino va a haber duplicados 
     const nuevosFavoritos = favoritos.filter(fav => fav.id !== this.state.data.id); //creo una lista nueva sin la serue q ta esta y si esta de nuevo la saco para q no se repita
+   
+    // si el lenght cambio, es xq la peli estaba (y la acabo de sacar)
     const esta = nuevosFavoritos.length !== favoritos.length;
 
     if (!esta) { // si no estaba la agrego
@@ -54,7 +57,7 @@ class UnaSerie extends Component {
     }
 
     localStorage.setItem(key, JSON.stringify(nuevosFavoritos));
-    this.setState({ esFavorito: !esta });
+    this.setState({ esFavorito: !esta }); ///para qie cambie el boton
   }
 
   render() {

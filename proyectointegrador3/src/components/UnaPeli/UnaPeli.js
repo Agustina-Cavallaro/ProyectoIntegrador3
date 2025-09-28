@@ -7,7 +7,7 @@ class UnaPeli extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null, //guardo los datos de la pe q vienen de la api
+      data: null, //empiezo en null para q hasta q llegue la info caargue
       esFavorito: false //para q detecte si esta en fsv ono
     };
   }
@@ -19,22 +19,22 @@ class UnaPeli extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          data, //toda la indo de la serie 
+          data, //toda la indo de la peli 
           esFavorito: this.estaEnFavoritos(data) //t/f si esta en favs o no
         });
       })
       .catch(error => this.setState({ error }));
   }
 
-  
-  estaEnFavoritos  (data)  { //se dija si ya esta la peli en favs
-    const key = "peliculasFavoritas";
+  ///revisa si el id ya esta en favs y si es true cambia el boton 
+  estaEnFavoritos  (data)  { //se fija si ya esta la peli en favs
+    const key = "peliculasFavoritas"; 
     const guardados = localStorage.getItem(key); //traogo lo q hay guardado
-    if (!guardados) return false; // si no haynada
+    if (!guardados) return false; // si no hay nada 
 
     const favoritos = JSON.parse(guardados);
-    const encontrados = favoritos.filter(fav => fav.id === data.id); //busco si ya esta
-      if (encontrados.length > 0) { /// qye si esta o no ya en favs y eso modifica el boton en detalle de agregar o quir
+    const encontrados = favoritos.filter(fav => fav.id === data.id); //busco si ya esta, recorro los favs y me fijo si esta el mismo id que la peli actual
+      if (encontrados.length > 0) { ///si econtrados mayor a 0 es xq la peli ya estaba 
       return true;
     } else {
       return false;
@@ -44,11 +44,14 @@ class UnaPeli extends Component {
 
 
   manejarFavorito  ()  { //agrega o saca de favs
-    const key = "peliculasFavoritas";
+    const key = "peliculasFavoritas"; //la key q viene de scm
     const guardados = localStorage.getItem(key);
     const favoritos = guardados ? JSON.parse(guardados) : []; //si no hay nada hacee el array vacio
 
-    const nuevosFavoritos = favoritos.filter(fav => fav.id !== this.state.data.id); ///filtro los q no coiniden con la acural, osea q hagi una lista sin lapeli q ya esta y si apatrece de nuveo la saco asi no se repite
+    //si ya estaba la peli en favoritos la borro xq sino va a haber duplicados 
+    const nuevosFavoritos = favoritos.filter(fav => fav.id !== this.state.data.id); ///this.sate.data.id es el id del detalle q estoy viendo
+
+    // si la longitud cambio, es xq la peli estaba (y la acabo de sacar)
     const esta = nuevosFavoritos.length !== favoritos.length;
 
     if (!esta) {
@@ -71,7 +74,7 @@ class UnaPeli extends Component {
           <h2>{data.original_title}</h2>
           <p><strong>Calificación:</strong> {data.vote_average}</p>
           <p><strong>Fecha de estreno:</strong> {data.release_date}</p>
-         <p> Generos:{data.genres.map(g => <p> {g.name + "  " }</p>)}</p>
+          <p> Generos:{data.genres.map(g => <p> {g.name + "  " }</p>)}</p>
           <p><strong>Duración:</strong> {data.runtime} min</p>
           <p><strong>Sinopsis:</strong> {data.overview}</p>
           <button onClick={()=>this.manejarFavorito()} className="botonesVer">

@@ -22,7 +22,7 @@ componentDidMount(){
     });
 }
 
-  cargarFavoritos  ()  { ////si se agrego a algo lo buca en el local y lo
+  cargarFavoritos  ()  { ////si se agrego a algo lo buca en el local
     //leo desde local lo q hay 
     let movies = localStorage.getItem("peliculasFavoritas");
     let series = localStorage.getItem("seriesFavoritas");
@@ -38,11 +38,13 @@ componentDidMount(){
     return (
       <section className="favoritos-container">
         <h2 class="categoriaHome">Películas Favoritas</h2>
-        {this.state.peliculasFavoritas.length === 0 ? ( //si no hay 
+        {this.state.peliculasFavoritas.length === 0 ? ( //si la lista esta vacia muestra el mesanje 
           <p>No tenes películas favoritas.</p>
         ) : (
+          //sino mapea single card
           <div className="favoritos-grid">
-            {this.state.peliculasFavoritas.map((movie) => ( //si hay las recorre con un map y crea un scm    para que si elimina de favs se recargie eso 
+            {/* mapea cada peli guardada en favs  y por cada una devuelve un scm */}
+            {this.state.peliculasFavoritas.map((movie) => ( //map recibe como parámetro una función que transforma cada película del array en un scm
               <SingleCardMovie key={movie.id} data={movie} pelicula={true} actualizarLista={()=> this.cargarFavoritos()}  />
             ))}                                                             
           </div>
