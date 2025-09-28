@@ -8,8 +8,8 @@ class TopRatedSeries extends Component {
         this.state = {
             datos: [], //aca voy a guardar mis datos cuando haga el fetch
             filter: props.filter, //me dice si filtro los primeros 4 o no
-            contador: 1,
-            valorFormulario:""
+            contador: 1, ////empiezo en la pagina 1 de la api 
+            valorFormulario:"" //texto para filtrar por titulo 
         }
     }
     evitarSubmit(event){
@@ -18,7 +18,7 @@ class TopRatedSeries extends Component {
 
     controlarCambios(event){
         this.setState({
-            valorFormulario: event.target.value
+            valorFormulario: event.target.value //actualiza el valor del form cuando se escibe algo 
             }
         )}
 
@@ -36,14 +36,15 @@ class TopRatedSeries extends Component {
         .then(res => res.json())
         .then((datos)=> {
             this.setState({
-                datos: this.state.datos.concat(datos.results),
-                contador: this.state.contador + 1
+                datos: this.state.datos.concat(datos.results), //concatena los datos que ya tenia con los nuevos
+                contador: this.state.contador + 1 //le agrega una pagina para la proxima 
             })
         })
         .catch((error) => console.log(error))
     }
 
-    filtrarElementos (busqueda, datos) { 
+    filtrarElementos (busqueda, datos) {  //filter de cada seccion
+            //filtra por coincidencia o parecido de title, devuelve solo los que se parecen
         return datos.filter(objetoElemento=> objetoElemento.name.toLowerCase().includes(busqueda.toLowerCase()))
     }
 
@@ -67,14 +68,15 @@ class TopRatedSeries extends Component {
 
 
     render(){
-        let tieneBusqueda = this.state.valorFormulario !== ""; ///devuelve booleano
+        let tieneBusqueda = this.state.valorFormulario !== ""; ///devuelve booleano si el input esta vacio es false 
         let filtroONo = (this.state.filter? this.state.datos.filter((_,i) => i<4) : this.state.datos) //si filter es verdadero, me devuelve una lista con los primero 4, sino todos los datos que ya tenia
         let filtrarFormularioONo = tieneBusqueda ? this.filtrarElementos(this.state.valorFormulario, filtroONo) : filtroONo 
         return(
             <React.Fragment>
                 {/* filtrar */}
-                { !this.state.filter ?   
+                { !this.state.filter ?   ///si filter es false aparece el buscador para  filtrar
                     <form onSubmit={(event)=> this.evitarSubmit(event)} className="ContainerFiltrador">
+                         {/* cada vez que escribís llama a controlarCambios que actualiza el estado con event.target.value. */}
                         <input className="Filtrador" placeholder="Insertar Filtro" type="text" onChange= {(event)=> this.controlarCambios(event)} value={this.state.valorFormulario}/>
                     </form> 
                 : null}
@@ -83,7 +85,8 @@ class TopRatedSeries extends Component {
                 <section className="row cards" id="movies">
                         {!tieneBusqueda ? 
                         ((this.state.datos.length === 0) ? <Loading/> : filtroONo.map((card) => <SingleCardMovie key={card.id} data={card} pelicula={false}/>))  :          
-                        filtrarFormularioONo.map((card) => <SingleCardMovie key={card.id} data={card} pelicula={false}/>)}  {/* el problema era que no le habia puesto key*/}
+                           ///si tiene busqueda muestro las pelicuals filtradas   
+                         filtrarFormularioONo.map((card) => <SingleCardMovie key={card.id} data={card} pelicula={false}/>)}  {/* el problema era que no le habia puesto key*/}
                 </section>                
                 
                 {/* Cargar Mas */}

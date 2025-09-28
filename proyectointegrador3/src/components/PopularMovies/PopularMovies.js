@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { Component } from "react"; ///xq es con estado 
 import SingleCardMovie from "../SingleCardMovie/SingleCardMovie";
 import Loading from "../Loading/Loading";
 
 class PopularMovies extends Component {
-    constructor(props){
-        super(props);
+    constructor(props){ 
+        super(props); //para poder usar las props
         this.state = {
             datos: [], //aca voy a guardar mis datos cuando haga el fetch
             filter: props.filter, //me dice si filtro los primeros 4 o no
-            contador:1,
-            valorFormulario: "",
+            contador:1, //primer pagina de la api 
+            valorFormulario: "", // texto para filtrar por titulo 
         }
     }
     evitarSubmit(event){
@@ -18,8 +18,8 @@ class PopularMovies extends Component {
 
     controlarCambios(event){
         this.setState({
-            valorFormulario: event.target.value
-            }
+            valorFormulario: event.target.value //cada vez que haya un cambio, en cada cambio trae lo q escirbio y lo guarda como el nuevo valor 
+            } //actualiza valor formulario con lo q escibe el usuario en el input
         )}
 
 
@@ -36,16 +36,18 @@ class PopularMovies extends Component {
         .then(res => res.json())
         .then((datos)=> {
             this.setState({
-                datos: this.state.datos.concat(datos.results),
-                contador: this.state.contador + 1
+                datos: this.state.datos.concat(datos.results), ///todos los datos que tenia antes se le concatenen los nuevos 
+                contador: this.state.contador + 1 ///trae los datos de la proxima pagina 
             })
         })
         .catch((error) => console.log(error))
     }
 
     filtrarElementos (busqueda, datos) { 
+        ///filtra por parecido a title y devuelve solo los q se parecen 
         return datos.filter(objetoElemento=> objetoElemento.title.toLowerCase().includes(busqueda.toLowerCase()))
     }
+
     componentDidMount(){
         // el fetch te lo da la API asi para js
         const options = {
@@ -65,14 +67,15 @@ class PopularMovies extends Component {
     }
 
     render(){
-        let tieneBusqueda = this.state.valorFormulario !== ""; ///devuelve booleano
+        let tieneBusqueda = this.state.valorFormulario !== ""; ///devuelve booleano, si el input esta vacio es false 
         let filtroONo = (this.state.filter? this.state.datos.filter((_,i) => i<4) : this.state.datos) //si filter es verdadero, me devuelve una lista con los primero 4, sino todos los datos que ya tenia
         let filtrarFormularioONo = tieneBusqueda ? this.filtrarElementos(this.state.valorFormulario, filtroONo) : filtroONo 
         return(
             <React.Fragment>
                 {/* filtrar */}
-                { !this.state.filter ?   
+                { !this.state.filter ?   ///si filter es false aparece el buscador para  filtrar
                     <form onSubmit={(event)=> this.evitarSubmit(event)} className="ContainerFiltrador">
+                          {/* cada vez que escribís llama a controlarCambios que actualiza el estado con event.target.value. */}
                         <input className="Filtrador" placeholder="Insertar Filtro" type="text" onChange= {(event)=> this.controlarCambios(event)} value={this.state.valorFormulario}/>
                     </form> 
                 : null}
@@ -81,6 +84,7 @@ class PopularMovies extends Component {
                 <section className="row cards" id="movies">
                         {!tieneBusqueda ? 
                         ((this.state.datos.length === 0) ? <Loading/> : filtroONo.map((card) => <SingleCardMovie key={card.id} data={card} pelicula={true}/>))  :          
+                          ///si tiene busqueda muestro las pelicuals filtradas  
                         filtrarFormularioONo.map((card) => <SingleCardMovie key={card.id} data={card} pelicula={true}/>)}  {/* el problema era que no le habia puesto key*/}
                 </section>          
 

@@ -15,7 +15,8 @@ function Home(){
             <Header/>
             <div className="container">
                 <h2 className="categoriaHome">Películas Populares</h2>
-                <PopularMovies filter={true} />
+                {/* vas pasandole si tiene que filtrar, si es tru en home solo mostras los primeros 4 elementos de c/u  */}
+                <PopularMovies filter={true} /> 
                 <Link to="/popularMovies">Ver Todas</Link>
 
                 <h2 class="categoriaHome">Series Populares</h2>

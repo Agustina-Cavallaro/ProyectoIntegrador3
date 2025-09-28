@@ -18,7 +18,8 @@ import Favoritos from "./screens/Favoritos/Favoritos";
 function App() {
   return (
     <Switch>
-      <Route path="/" exact= {true} component={Home}/>
+      {/* esxactamene a esa ruta */}
+      <Route path="/" exact= {true} component={Home}/> 
       <Route path="/favoritos" component={Favoritos} /> 
       <Route path="/popularMovies" component={PopularMoviesSection} />
       <Route path="/popularSeries" component={PopularSeriesSection}/> 
@@ -31,7 +32,7 @@ function App() {
       <Route path="/tv/id/:id" component={UnaSerie} />
       <Route path="/results/:tipo/:busqueda" component={Results} />
       
-
+      {/* vacio xq la ruta no coincide con las ya definidad  */}
       <Route path="" component={NotFound}/>
     </Switch>  
   );

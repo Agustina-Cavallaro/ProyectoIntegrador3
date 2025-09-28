@@ -8,6 +8,7 @@ function NowPlayingMoviesSection(){
         <React.Fragment>
             <Header/>
             <h2 class="categoriaHome">Peliculas En Cartelera</h2>
+            {/* filter es false en cada categoria para que muestre todos */}
             <NowPlayingMovies filter={false}/>
             <Footer/> 
         </React.Fragment>

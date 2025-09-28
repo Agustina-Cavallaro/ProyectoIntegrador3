@@ -26,7 +26,7 @@ class UnaPeli extends Component {
       .catch(error => this.setState({ error }));
   }
 
-  ///revisa si el id ya esta en favs y si es true cambia el boton 
+  ///revisa si el id ya esta en local y si es true cambia el boton 
   estaEnFavoritos  (data)  { //se fija si ya esta la peli en favs
     const key = "peliculasFavoritas"; 
     const guardados = localStorage.getItem(key); //traogo lo q hay guardado

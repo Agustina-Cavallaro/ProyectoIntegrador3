@@ -15,7 +15,7 @@ componentDidMount(){
     let movies = localStorage.getItem("peliculasFavoritas");
     let series = localStorage.getItem("seriesFavoritas");
 
-    this.setState({
+    this.setState({ //seteo el nuevo estado 
       //si habia alfo en el local lo parse y sino lo dejo como lsia
       peliculasFavoritas: movies ? JSON.parse(movies) : [],
       seriesFavoritas: series ? JSON.parse(series) : []
